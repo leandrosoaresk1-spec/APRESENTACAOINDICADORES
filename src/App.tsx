@@ -32,7 +32,13 @@ import {
   Triangle,
   ShieldAlert,
   UserMinus,
-  RotateCcw
+  RotateCcw,
+  Globe,
+  Smartphone,
+  Laptop,
+  Settings,
+  Layers,
+  LayoutDashboard
 } from 'lucide-react';
 import { 
   BarChart, 
@@ -264,7 +270,160 @@ const Slides = [
     </div>
   ),
 
-  // SLIDE 1: MÉTODO DE ANÁLISE
+  // SLIDE 1: ENTREGAS REALIZADAS
+  () => (
+    <SlideWrapper title="Entregas Realizadas – 1º Trimestre de 2026">
+      <div className="flex flex-col h-full justify-between gap-6">
+        {/* Timeline/Execution Progress Bar */}
+        <div className="bg-gray-50/50 border border-gray-100/80 px-6 py-4 rounded-2xl flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <span className="flex h-3 w-3 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
+            <span className="text-xs font-black uppercase text-dark tracking-wider">Cronograma Q1/2026: 100% Concluído</span>
+            
+            <div className="h-4 w-[1px] bg-gray-200 hidden md:block" />
+            
+            <span className="text-xs font-black text-medium uppercase tracking-wider flex items-center gap-2">
+              <span className="text-gray-400">Total no Trimestre:</span>
+              <span className="px-2 py-0.5 bg-red-50 text-[#ff0032] border border-red-100 rounded-md font-mono text-xs">
+                13 Entregas
+              </span>
+            </span>
+          </div>
+          <div className="flex items-center gap-6 text-[10px] font-bold text-light uppercase tracking-widest md:flex">
+            <div className="flex items-center gap-2">
+              <span className="text-emerald-500">✔</span> Alta Produtividade
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-emerald-500">✔</span> Transformação Digital
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-emerald-500">✔</span> Evolução de Processos
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-emerald-500">✔</span> RH 4.0 & Inovação
+            </div>
+          </div>
+        </div>
+
+        {/* Bento/Dashboard Grid of 5 Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-2">
+          {[
+            {
+              title: "Dashboards",
+              icon: LayoutDashboard,
+              color: "text-[#ff0032] bg-red-50/60 border-red-100",
+              accentColor: "#ff0032",
+              items: [
+                "Adesão AVD",
+                "Adesão LNTD",
+                "Autoavaliação AVD",
+                "Indicador Global de Adesão aos Treinamentos",
+                "Dashboard PCD – Duplicação de Análises Trimestrais"
+              ]
+            },
+            {
+              title: "Landing Page",
+              icon: Globe,
+              color: "text-blue-600 bg-blue-50/60 border-blue-100",
+              accentColor: "#2563eb",
+              items: [
+                "Programa de Estágio"
+              ]
+            },
+            {
+              title: "Processos",
+              icon: Settings,
+              color: "text-orange-600 bg-orange-50/60 border-orange-100",
+              accentColor: "#ea580c",
+              items: [
+                "Construção do Processo DISC",
+                "Customização do Processo de LNTD"
+              ]
+            },
+            {
+              title: "Aplicativos",
+              icon: Smartphone,
+              color: "text-violet-600 bg-violet-50/60 border-violet-100",
+              accentColor: "#7c3aed",
+              items: [
+                "Catálogo de Parcerias",
+                "Descrição de Cargos",
+                "Controle de EPI"
+              ]
+            },
+            {
+              title: "Sistemas",
+              icon: Laptop,
+              color: "text-emerald-600 bg-emerald-50/60 border-emerald-100",
+              accentColor: "#059669",
+              items: [
+                "Sistema Jurídico (Informativos)",
+                "Sistema da Qualidade (checklist auditoria interna)"
+              ]
+            }
+          ].map((card, i) => {
+            const IconComponent = card.icon;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                className="bg-white rounded-3xl border border-gray-100 p-6 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between relative overflow-hidden group min-h-[340px]"
+              >
+                {/* Accent top bar */}
+                <div 
+                  className="absolute top-0 left-0 right-0 h-1.5" 
+                  style={{ backgroundColor: card.accentColor }}
+                />
+
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className={cn("p-3 rounded-2xl flex items-center justify-center shadow-inner", card.color)}>
+                      <IconComponent size={24} />
+                    </div>
+                    {/* Discreto e estratégico indicador quantitativo do card */}
+                    <span className="text-sm font-black text-gray-400 font-mono bg-gray-50 border border-gray-100/60 px-2.5 py-1 rounded-full">
+                      {card.items.length}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-black text-dark tracking-tight leading-none mb-4 group-hover:text-[#ff0032] transition-colors">
+                    {card.title}
+                  </h3>
+
+                  <div className="w-full h-[1px] bg-gray-100/80 mb-4" />
+
+                  <ul className="space-y-3.5">
+                    {card.items.map((item, idx) => (
+                      <li key={idx} className="flex gap-2.5 items-start">
+                        <div className="mt-1.5 shrink-0 h-1.5 w-1.5 rounded-full" style={{ backgroundColor: card.accentColor }} />
+                        <span className="text-xs font-bold text-dark leading-snug tracking-tight">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Micro decorator */}
+                <div className="mt-6 pt-4 border-t border-gray-50/50 flex justify-between items-center text-[9px] font-extrabold text-[#ff0032] uppercase tracking-[0.15em] opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span>Concluído • Q1</span>
+                  <span>→</span>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </SlideWrapper>
+  ),
+
+  // SLIDE 2: MÉTODO DE ANÁLISE
   () => (
     <SlideWrapper title="MÉTODO DE ANÁLISE" subtitle="As 3 Gerências com Maior Impacto no Absenteísmo no Último Trimestre">
       <div className="space-y-12">
@@ -403,7 +562,7 @@ const Slides = [
     </SlideWrapper>
   ),
 
-  // SLIDE 2: ABSENTEÍSMO + BENCHMARK
+  // SLIDE 3: ABSENTEÍSMO + BENCHMARK
   () => (
     <SlideWrapper title="Absenteísmo & Longevidade" subtitle="A Anatomia do Afastamento no 1º Tri">
       <div className="relative">
@@ -514,47 +673,73 @@ const Slides = [
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 flex flex-col gap-8">
           <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-10">
+            <div className="absolute top-0 right-0 p-4 opacity-5">
                <Brain size={120} className="text-[#ff0032]" />
             </div>
-            
-            <div className="flex items-center gap-3 mb-6">
-              <span className="bg-red-50 text-[#ff0032] px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase">
-                COEFICIENTE: 0,85
-              </span>
-              <span className="text-[10px] font-bold text-medium uppercase tracking-wider">
-                Correlação Estatística Muito Forte
-              </span>
-            </div>
 
-            <h4 className="text-xl font-black text-dark mb-4 tracking-tight leading-tight">
-              Análise Crítica: A Dinâmica da Fadiga e Sobrecarga Sistêmica
+            <h4 className="text-xl font-black text-dark mb-1 tracking-tight leading-tight">
+              Comportamento Observado no Trimestre: Absenteísmo e Crescimento de Acidentes
             </h4>
-
-            <p className="text-xs text-dark font-medium leading-relaxed mb-6">
-              A correlação direta de <strong className="text-[#ff0032] font-black">0,85</strong> observada entre o aumento de absenteísmo e o pico de acidentes no trabalho em Março revela um <strong className="font-extrabold text-dark font-sans">elo de causalidade sistêmica</strong> em vez de falhas assistenciais isoladas:
+            <p className="text-xs font-bold text-medium uppercase tracking-wider mb-6">
+              O aumento simultâneo dos indicadores sugere maior pressão operacional nas equipes assistenciais.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-                <span className="text-xs font-black text-[#ff0032] uppercase tracking-wider block mb-1">Efeito Cascata nas Escalas</span>
-                <p className="text-[11px] font-bold text-medium leading-relaxed">
-                  As faltas decorrentes do absenteísmo reduzem as equipes operacionais de imediato. Como as demandas assistenciais e operacionais permanecem inalteradas, a jornada e a intensidade do esforço da força de trabalho ativa sobem a patamares de exaustão.
-                </p>
+            {/* Fluxo Operacional Simples */}
+            <div className="flex flex-wrap items-center justify-between gap-2 bg-gray-50/50 p-4 rounded-xl mb-6 border border-gray-100/60">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-red-50 border border-red-100/50 rounded-lg text-[10px] font-extrabold text-[#ff0032] uppercase tracking-wide">
+                Maior Absenteísmo
               </div>
-              <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-                <span className="text-xs font-black text-dark uppercase tracking-wider block mb-1">Sobrecarga Física e Mental</span>
-                <p className="text-[11px] font-bold text-medium leading-relaxed">
-                  Com 17,35% dos profissionais atuando em duplo vínculo assistencial, a fadiga extrema decorrente de dobras de plantão debilita a coordenação psicomotora fina, culminando no aumento de acidentes com perfurocortantes registrados no período diurno.
-                </p>
+              <ChevronRight className="text-gray-300 hidden md:block" size={14} />
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 border border-orange-100/50 rounded-lg text-[10px] font-extrabold text-orange-700 uppercase tracking-wide">
+                Redistribuição das Atividades
+              </div>
+              <ChevronRight className="text-gray-300 hidden md:block" size={14} />
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 border border-amber-100/50 rounded-lg text-[10px] font-extrabold text-amber-700 uppercase tracking-wide">
+                Sobrecarga Operacional
+              </div>
+              <ChevronRight className="text-gray-300 hidden md:block" size={14} />
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 border border-rose-100/50 rounded-lg text-[10px] font-extrabold text-rose-700 uppercase tracking-wide">
+                Maior Exposição a Falhas e Acidentes
               </div>
             </div>
 
-            <div className="p-4 bg-red-50 border border-red-100 rounded-xl flex gap-3">
-              <Info className="text-[#ff0032] shrink-0 mt-0.5" size={16} />
-              <p className="text-[11px] text-red-900 font-bold leading-relaxed">
-                <strong className="text-dark">Recomendação Diretiva:</strong> A redução sustentada de acidentes e do absenteísmo depende de atuarmos nas causas de exaustão. O redesenho preventivo das escalas com foco em áreas de maior sobrecarga (Hotelaria, Cuidados Clínicos e Nutrição) é indispensável para preservar o contingente e estancar as faltas em cadeia.
-              </p>
+            {/* Grid dos Cards de Leitura Qualitativa (2 colunas) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* CARD 1 – Cenário Identificado */}
+              <div className="p-5 bg-gray-50/50 rounded-xl border border-gray-100 flex flex-col justify-between">
+                <div>
+                  <span className="text-xs font-black text-[#ff0032] uppercase tracking-wider block mb-3">
+                    Cenário Identificado
+                  </span>
+                  <p className="text-[12px] font-bold text-dark leading-relaxed mb-3">
+                    Durante o trimestre foi observado aumento do absenteísmo acompanhado do crescimento dos acidentes registrados.
+                  </p>
+                  <p className="text-[12px] font-bold text-medium leading-relaxed">
+                    A movimentação simultânea dos indicadores sugere necessidade de aprofundamento das análises sobre carga operacional e capacidade das equipes.
+                  </p>
+                </div>
+              </div>
+
+              {/* CARD 2 – Possíveis Efeitos Operacionais */}
+              <div className="p-5 bg-gray-50/50 rounded-xl border border-gray-100">
+                <span className="text-xs font-black text-dark uppercase tracking-wider block mb-3">
+                  Possíveis Efeitos Operacionais
+                </span>
+                <ul className="space-y-2.5">
+                  {[
+                    "Menor disponibilidade de profissionais",
+                    "Redistribuição das demandas",
+                    "Intensificação do ritmo de trabalho",
+                    "Maior desgaste físico e mental",
+                    "Aumento da exposição operacional"
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-[12px] font-bold text-medium">
+                      <div className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
 
