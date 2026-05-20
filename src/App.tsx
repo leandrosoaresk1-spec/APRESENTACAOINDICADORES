@@ -150,7 +150,7 @@ const SantaCasaLogo = ({ className }: { className?: string }) => (
 );
 
 // COMPONENTS
-const StatCard = ({ title, value, subValue, icon: Icon, trend, subTrend, trendColor }: any) => (
+const StatCard = ({ title, value, subValue, icon: Icon, trend, subTrend, trendColor, statusIndicator }: any) => (
   <motion.div 
     whileHover={{ y: -5 }}
     className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col justify-between"
@@ -162,7 +162,8 @@ const StatCard = ({ title, value, subValue, icon: Icon, trend, subTrend, trendCo
       {(trend || subTrend) && (
         <div className="flex flex-col items-end">
           {trend && (
-            <div className={cn("text-[9px] font-bold flex items-center gap-1 px-2 py-0.5 rounded-full bg-gray-50 border border-gray-100 whitespace-nowrap", trendColor)}>
+            <div className={cn("text-[9px] font-bold flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-gray-50 border border-gray-100 whitespace-nowrap", trendColor)}>
+              {statusIndicator && <span className="text-[10px] leading-none shrink-0">{statusIndicator}</span>}
               {trend}
               {trend.includes('+') ? <TrendingUp size={10} /> : (trend.includes('-') ? <TrendingDown size={10} /> : null)}
             </div>
@@ -210,11 +211,12 @@ const ExecutiveInsight = ({ content }: { content: string }) => (
   </div>
 );
 
-const BenchmarkBadge = ({ value, label, isHigher }: any) => (
+const BenchmarkBadge = ({ value, label, isHigher, statusIndicator }: any) => (
   <div className={cn(
     "flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider",
     isHigher ? "bg-red-50 text-red-600 border border-red-100" : "bg-green-50 text-green-600 border border-green-100"
   )}>
+    {statusIndicator && <span className="text-[11px] leading-none shrink-0">{statusIndicator}</span>}
     {isHigher ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
     {value} vs Mercado ({label})
   </div>
@@ -593,9 +595,9 @@ const Slides = [
         <div>
           <div className="flex justify-between items-end mb-6">
             <h5 className="font-bold text-dark">Tendência Mensal (%)</h5>
-            <BenchmarkBadge value="+15%" label="Média Hospitalar Nac." isHigher={true} />
+            <BenchmarkBadge value="+15%" label="Média Hospitalar Nac." isHigher={true} statusIndicator="🟡" />
           </div>
-          <div className="h-[250px] mb-8">
+          <div className="h-[230px] mb-4">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={ABSENTEEISM_DATA}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
@@ -610,6 +612,54 @@ const Slides = [
                 <Line type="monotone" dataKey="benchmark" name="Benchmark Mercado" stroke="#b4b4b4" strokeWidth={2} strokeDasharray="5 5" />
               </BarChart>
             </ResponsiveContainer>
+          </div>
+
+          <div className="space-y-3">
+            {/* Box de Referência Global */}
+            <div className="bg-gray-50 border border-gray-100/80 p-4 rounded-2xl flex items-center justify-between gap-4">
+              <div className="flex items-start gap-2.5">
+                <span className="text-xl mt-0.5">🌍</span>
+                <div className="space-y-0.5">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-dark flex items-center gap-1.5 flex-wrap">
+                    Referência Global: 2,1%
+                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-600 border border-amber-100 text-[8px] font-black uppercase tracking-wider leading-none">
+                      🟡 Moderadamente distante
+                    </span>
+                  </span>
+                  <p className="text-[11px] font-bold text-medium leading-relaxed">
+                    Indicador incluído para contextualização externa, permitindo observar proximidade ou distanciamento em relação ao cenário global.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Box de Referência Global - Impacto Financeiro */}
+            <div className="bg-gray-50 border border-gray-100/80 p-4 rounded-2xl">
+              <div className="flex items-start gap-2.5 mb-3">
+                <span className="text-xl mt-0.5">🌍</span>
+                <div className="space-y-1">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-dark flex items-center gap-1.5 flex-wrap">
+                    Referência Global – Impacto Financeiro
+                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-600 border border-amber-100 text-[8px] font-black uppercase tracking-wider leading-none">
+                      🟡 Moderadamente distante
+                    </span>
+                  </span>
+                  <p className="text-[10px] font-bold text-medium leading-relaxed">
+                    Indicadores financeiros globais incluídos apenas para ampliar a interpretação comparativa do impacto econômico do absenteísmo.
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-3 mt-2">
+                <div className="p-3 bg-white border border-gray-100/80 rounded-xl">
+                  <span className="text-[8px] font-black uppercase tracking-wider text-light block mb-1">💰 Custo Global do Período</span>
+                  <span className="text-sm font-black text-dark tabular-nums">R$ 976.917,96</span>
+                </div>
+                <div className="p-3 bg-white border border-gray-100/80 rounded-xl">
+                  <span className="text-[8px] font-black uppercase tracking-wider text-light block mb-1">👤 Média Global por Colaborador</span>
+                  <span className="text-sm font-black text-dark tabular-nums">R$ 51,90</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -664,9 +714,9 @@ const Slides = [
   () => (
     <SlideWrapper title="Snapshot Estratégico" subtitle="Principais Alavancas do 1º Trimestre">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <StatCard title="Absenteísmo" value="3,2%" subValue="Média no trimestre" icon={Activity} trend="2,5 MÉDIA MERCADO" trendColor="text-medium" />
-        <StatCard title="Turnover" value="3,0%" subValue="Média no trimestre" icon={Users} trend="2,5 MÉDIA MERCADO" trendColor="text-medium" />
-        <StatCard title="Acidentes" value="42,3" subValue="Taxa média trimestral" icon={AlertTriangle} trend="17,48 MÉDIA MERCADO" subTrend="Hospital Global" trendColor="text-medium" />
+        <StatCard title="Absenteísmo" value="3,2%" subValue="Média no trimestre" icon={Activity} trend="2,5 MÉDIA MERCADO" trendColor="text-amber-600" statusIndicator="🟡" />
+        <StatCard title="Turnover" value="3,0%" subValue="Média no trimestre" icon={Users} trend="2,5 MÉDIA MERCADO" trendColor="text-green-600" statusIndicator="🟢" />
+        <StatCard title="Acidentes" value="42,3" subValue="Taxa média trimestral" icon={AlertTriangle} trend="17,48 MÉDIA MERCADO" subTrend="Hospital Global" trendColor="text-red-650" statusIndicator="🔴" />
         <StatCard title="Impacto Financeiro" value="R$ 227k" subValue="Custo Absenteísmo" icon={DollarSign} trend="R$ 61/colab" trendColor="text-gray-500" />
       </div>
       
@@ -808,6 +858,24 @@ const Slides = [
                <p className="text-xs text-red-900 font-bold leading-relaxed">
                  A predominância de acidentes no período diurno pode indicar relação com fatores de fadiga, desgaste ocupacional e dupla jornada ocasionando maior vulnerabilidade operacional afetando a saúde mental.
                </p>
+            </div>
+          </div>
+
+          {/* Mini box lateral para Acidentes de Trabalho */}
+          <div className="bg-gray-50 border border-gray-100 p-5 rounded-2xl flex items-center justify-between gap-4">
+            <div className="flex items-start gap-2.5">
+              <span className="text-xl mt-0.5">🌍</span>
+              <div className="space-y-0.5">
+                <span className="text-[10px] font-black uppercase tracking-wider text-dark flex items-center gap-1.5 flex-wrap">
+                  Referência Global: 22,89
+                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-red-50 text-red-600 border border-red-100 text-[8px] font-black uppercase tracking-wider leading-none">
+                    🔴 Distante
+                  </span>
+                </span>
+                <p className="text-[11px] font-bold text-medium leading-relaxed">
+                  Comparação qualitativa adicionada apenas para referência de posicionamento.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1029,6 +1097,14 @@ const Slides = [
                 </div>
               </div>
             </div>
+
+            {/* Bloco discreto de Contexto Externo */}
+            <div className="bg-gray-50 border border-gray-100 p-5 rounded-[2rem] flex flex-col gap-1.5 shadow-sm">
+              <span className="text-[10px] font-black text-dark uppercase tracking-widest block">Contexto Externo</span>
+              <p className="text-[11px] font-bold text-medium leading-relaxed">
+                Objetivo: Verificar aderência, proximidade ou diferenças em relação às referências globais.
+              </p>
+            </div>
           </div>
 
           {/* Fatores de Demissão */}
@@ -1056,10 +1132,26 @@ const Slides = [
                   </div>
                 ))}
               </div>
-              <div className="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-xl">
-                 <p className="text-[11px] text-medium font-medium leading-relaxed">
-                   <span className="text-dark font-bold">Insight Executivo:</span> O ambiente tóxico e a falta de reconhecimento superam em <span className="text-dark font-black italic">3x as causas salariais</span> (implícito na categoria "Outras" e benchmark).
-                 </p>
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 bg-gray-50 border border-gray-100 rounded-xl">
+                   <p className="text-[11px] text-medium font-medium leading-relaxed">
+                     <span className="text-dark font-bold">Insight Executivo:</span> O ambiente tóxico e a falta de reconhecimento superam em <span className="text-dark font-black italic">3x as causas salariais</span> (implícito na categoria "Outras" e benchmark).
+                   </p>
+                </div>
+                <div className="p-4 bg-gray-50 border border-gray-200/60 rounded-xl flex items-center gap-3">
+                   <span className="text-lg">🌍</span>
+                   <div>
+                     <span className="text-[10px] font-black uppercase text-dark tracking-wider flex items-center gap-1.5 flex-wrap font-bold">
+                      Média Global: 2,5%
+                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-green-50 text-green-600 border border-green-100 text-[8px] font-black uppercase tracking-wider leading-none">
+                        🟢 Próximo
+                      </span>
+                    </span>
+                     <p className="text-[10px] font-bold text-medium leading-relaxed">
+                       Resultado comparado de forma complementar, preservando integralmente a análise interna.
+                     </p>
+                   </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1115,7 +1207,7 @@ const Slides = [
   () => (
     <SlideWrapper title="Cultura & Segurança Psicológica" subtitle="O 'Fenômeno da Melancia' e a Dissonância Cognitiva">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-4">
-        <div>
+        <div className="flex flex-col gap-6">
            <div className="relative p-12 bg-white rounded-[3rem] border border-gray-100 shadow-2xl flex flex-col items-center justify-center overflow-hidden">
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-red-50 rounded-full blur-3xl" />
               <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-green-50 rounded-full blur-3xl opacity-50" />
@@ -1133,6 +1225,21 @@ const Slides = [
                     A alta satisfação declarada esconde um ambiente de medo e insegurança onde falhas não são reportadas preventivamente.
                   </p>
                 </div>
+              </div>
+           </div>
+
+           <div className="p-4 bg-gray-50 border border-gray-200/60 rounded-xl flex items-center gap-3">
+              <span className="text-lg">🌍</span>
+              <div>
+                 <span className="text-[10px] font-black uppercase text-dark tracking-wider flex items-center gap-1.5 flex-wrap font-bold">
+                    Resultado Global / Referência Externa: 76,74
+                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-green-50 text-green-600 border border-green-100 text-[8px] font-black uppercase tracking-wider leading-none">
+                      🟢 Próximo
+                    </span>
+                 </span>
+                 <p className="text-[10px] font-bold text-medium leading-relaxed">
+                    Resultado comparado de forma complementar, preservando integralmente a análise interna.
+                 </p>
               </div>
            </div>
         </div>
@@ -1165,12 +1272,106 @@ const Slides = [
                 </div>
              </div>
           </div>
+
+           </div>
+      </div>
+    </SlideWrapper>
+  ),
+
+  // SLIDE 8: COMPARATIVO CONSOLIDADO
+  () => (
+    <SlideWrapper 
+      title="Comparativo Consolidado – GERÊNCIAS ANALISADAS x SANTA CASA BH" 
+      subtitle="Visão comparativa dos principais indicadores do 1º trimestre de 2026, permitindo avaliar o posicionamento institucional frente às gerências analisadas."
+    >
+      <div className="flex flex-col h-full justify-between gap-8 mt-4">
+        <div className="bg-white rounded-[2rem] border border-gray-100 shadow-xl overflow-hidden flex-1">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-gray-50/80 border-b border-gray-100">
+                  <th className="p-6 text-[11px] font-black text-dark uppercase tracking-wider">Indicador</th>
+                  <th className="p-6 text-[11px] font-black text-dark uppercase tracking-wider">GERÊNCIAS ANALISADAS</th>
+                  <th className="p-6 text-[11px] font-black text-dark uppercase tracking-wider">Média / Ref. Global</th>
+                  <th className="p-6 text-[11px] font-black text-dark uppercase tracking-wider">Situação Relativa</th>
+                  <th className="p-6 text-[11px] font-black text-dark uppercase tracking-wider">Análise de Contexto</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-50 font-bold text-sm">
+                {[
+                  {
+                    name: "Absenteísmo (Trimestral)",
+                    sc: "3,2%",
+                    global: "2,1%",
+                    status: "Moderadamente distante",
+                    statusEmoji: "🟡",
+                    statusColor: "text-amber-600 bg-amber-50 border-amber-100",
+                    statusDot: "bg-amber-500",
+                    desc: "Indicador com comportamento acima da referência analisada, sugerindo oportunidade para aprofundamento das avaliações sobre distribuição da carga operacional e dinâmica das equipes."
+                  },
+                  {
+                    name: "Acidentes de Trabalho (Taxa)",
+                    sc: "42,3",
+                    global: "22,89",
+                    status: "Distante",
+                    statusEmoji: "🔴",
+                    statusColor: "text-red-600 bg-red-50 border-red-100",
+                    statusDot: "bg-[#ff0032]",
+                    desc: "Resultado apresenta distanciamento em relação ao cenário comparativo, indicando necessidade de acompanhamento das condições operacionais e fatores associados à exposição ocupacional."
+                  },
+                  {
+                    name: "Turnover (Média Mensal)",
+                    sc: "3,0%",
+                    global: "2,5%",
+                    status: "Próximo",
+                    statusEmoji: "🟢",
+                    statusColor: "text-green-600 bg-green-50 border-green-100",
+                    statusDot: "bg-green-500",
+                    desc: "Indicador demonstra comportamento próximo às referências analisadas, sugerindo estabilidade relativa no movimento de desligamentos do período."
+                  },
+                  {
+                    name: "Pesquisa de Clima (Satisfação)",
+                    sc: "76,74%",
+                    global: "76,74",
+                    status: "Próximo",
+                    statusEmoji: "🟢",
+                    statusColor: "text-green-600 bg-green-50 border-green-100",
+                    statusDot: "bg-green-500",
+                    desc: "Resultado mantém aderência ao cenário observado, contribuindo para uma leitura positiva da percepção organizacional no período analisado."
+                  }
+                ].map((row, idx) => (
+                  <tr key={idx} className="hover:bg-gray-50/50 transition-colors">
+                    <td className="p-6 font-extrabold text-dark tracking-tight">{row.name}</td>
+                    <td className="p-6 font-mono text-dark">{row.sc}</td>
+                    <td className="p-6 font-mono text-medium">{row.global}</td>
+                    <td className="p-6">
+                      <span className="px-3 py-1.5 rounded-full border text-xs flex items-center gap-1.5 w-fit uppercase font-black tracking-wider bg-gray-50 text-gray-600 border-gray-100">
+                        <span className="text-xs leading-none shrink-0">{row.statusEmoji}</span>
+                        {row.status}
+                      </span>
+                    </td>
+                    <td className="p-6 text-xs text-medium font-medium leading-relaxed max-w-sm">{row.desc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="p-5 bg-gray-50 border border-gray-100 rounded-3xl flex items-start gap-4">
+          <span className="text-xl">💡</span>
+          <div>
+            <span className="text-[10px] font-black text-dark uppercase tracking-[0.2em] block mb-1">Nota Metodológica Importante</span>
+            <p className="text-xs text-medium leading-relaxed font-semibold">
+              Este comparativo consolidado atua como uma <span className="text-[#ff0032] font-extrabold font-black">camada adicional de contextualização</span>. Todas as metas, gráficos, conclusões e análises da apresentação oficial interna das GERÊNCIAS ANALISADAS foram mantidos integralmente preservados, servindo estas referências externas apenas como apoio executivo e posicionamento.
+            </p>
+          </div>
         </div>
       </div>
     </SlideWrapper>
   ),
 
-  // SLIDE 7: SÍNTESE ANALÍTICA
+  // SLIDE 9: SÍNTESE ANALÍTICA
   () => (
     <SlideWrapper title="Síntese de Recomendações" subtitle="Principais evidências observadas nas gerências de maior impacto">
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-4">
@@ -1245,10 +1446,10 @@ const Slides = [
             </button>
           </div>
        </div>
-    </SlideWrapper>
+     </SlideWrapper>
   ),
 
-  // SLIDE 8: ENCERRAMENTO
+  // SLIDE 10: ENCERRAMENTO
   () => (
     <div className="h-full bg-dark flex flex-col items-center justify-center text-center p-12 relative overflow-hidden">
        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[1px] bg-white/5 skew-y-12" />
