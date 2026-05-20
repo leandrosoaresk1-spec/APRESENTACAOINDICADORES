@@ -514,37 +514,46 @@ const Slides = [
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 flex flex-col gap-8">
           <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-5">
-               <BarChart3 size={120} />
+            <div className="absolute top-0 right-0 p-4 opacity-10">
+               <Brain size={120} className="text-[#ff0032]" />
             </div>
-            <h4 className="text-lg font-bold text-dark mb-6 flex items-center gap-2">
-              <TrendingUp size={20} className="text-[#ff0032]" />
-              Correlação: Absenteísmo vs Acidentes
+            
+            <div className="flex items-center gap-3 mb-6">
+              <span className="bg-red-50 text-[#ff0032] px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase">
+                COEFICIENTE: 0,85
+              </span>
+              <span className="text-[10px] font-bold text-medium uppercase tracking-wider">
+                Correlação Estatística Muito Forte
+              </span>
+            </div>
+
+            <h4 className="text-xl font-black text-dark mb-4 tracking-tight leading-tight">
+              Análise Crítica: A Dinâmica da Fadiga e Sobrecarga Sistêmica
             </h4>
-            <div className="h-[250px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={ACCIDENT_DATA}>
-                  <defs>
-                    <linearGradient id="colorRate" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#ff0032" stopOpacity={0.8}/>
-                      <stop offset="95%" stopColor="#ff0032" stopOpacity={0}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                  <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{fill: '#b4b4b4', fontSize: 12}} dy={10} />
-                  <YAxis axisLine={false} tickLine={false} tick={{fill: '#b4b4b4', fontSize: 12}} />
-                  <Tooltip 
-                    contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'}}
-                    itemStyle={{fontWeight: 'bold', color: '#323232'}}
-                  />
-                  <Area type="monotone" dataKey="rate" name="Taxa de Acidente" stroke="#ff0032" strokeWidth={3} fillOpacity={1} fill="url(#colorRate)" />
-                </AreaChart>
-              </ResponsiveContainer>
+
+            <p className="text-xs text-dark font-medium leading-relaxed mb-6">
+              A correlação direta de <strong className="text-[#ff0032] font-black">0,85</strong> observada entre o aumento de absenteísmo e o pico de acidentes no trabalho em Março revela um <strong className="font-extrabold text-dark font-sans">elo de causalidade sistêmica</strong> em vez de falhas assistenciais isoladas:
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                <span className="text-xs font-black text-[#ff0032] uppercase tracking-wider block mb-1">Efeito Cascata nas Escalas</span>
+                <p className="text-[11px] font-bold text-medium leading-relaxed">
+                  As faltas decorrentes do absenteísmo reduzem as equipes operacionais de imediato. Como as demandas assistenciais e operacionais permanecem inalteradas, a jornada e a intensidade do esforço da força de trabalho ativa sobem a patamares de exaustão.
+                </p>
+              </div>
+              <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                <span className="text-xs font-black text-dark uppercase tracking-wider block mb-1">Sobrecarga Física e Mental</span>
+                <p className="text-[11px] font-bold text-medium leading-relaxed">
+                  Com 17,35% dos profissionais atuando em duplo vínculo assistencial, a fadiga extrema decorrente de dobras de plantão debilita a coordenação psicomotora fina, culminando no aumento de acidentes com perfurocortantes registrados no período diurno.
+                </p>
+              </div>
             </div>
-            <div className="mt-6 p-4 bg-gray-50 rounded-xl flex items-center gap-3">
-              <Info className="text-light shrink-0" size={18} />
-              <p className="text-sm text-dark font-medium italic">
-                "Observamos uma correlação direta de 0.85 entre o aumento de absenteísmo e a taxa de acidentes em Março. Sobrecarga e fadiga são os gatilhos."
+
+            <div className="p-4 bg-red-50 border border-red-100 rounded-xl flex gap-3">
+              <Info className="text-[#ff0032] shrink-0 mt-0.5" size={16} />
+              <p className="text-[11px] text-red-900 font-bold leading-relaxed">
+                <strong className="text-dark">Recomendação Diretiva:</strong> A redução sustentada de acidentes e do absenteísmo depende de atuarmos nas causas de exaustão. O redesenho preventivo das escalas com foco em áreas de maior sobrecarga (Hotelaria, Cuidados Clínicos e Nutrição) é indispensável para preservar o contingente e estancar as faltas em cadeia.
               </p>
             </div>
           </div>
