@@ -38,7 +38,10 @@ import {
   Laptop,
   Settings,
   Layers,
-  LayoutDashboard
+  LayoutDashboard,
+  Compass,
+  Search,
+  Rocket
 } from 'lucide-react';
 import { 
   BarChart, 
@@ -150,7 +153,7 @@ const SantaCasaLogo = ({ className }: { className?: string }) => (
 );
 
 // COMPONENTS
-const StatCard = ({ title, value, subValue, icon: Icon, trend, subTrend, trendColor, statusIndicator }: any) => (
+const StatCard = ({ title, value, subValue, icon: Icon, trend, subTrend, trendColor, statusIndicator, extraInfo }: any) => (
   <motion.div 
     whileHover={{ y: -5 }}
     className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col justify-between"
@@ -178,6 +181,11 @@ const StatCard = ({ title, value, subValue, icon: Icon, trend, subTrend, trendCo
       <p className="text-[10px] text-light font-black uppercase tracking-widest mb-1">{title}</p>
       <h3 className="text-3xl font-black text-dark tabular-nums leading-none mb-2">{value}</h3>
       <p className="text-[10px] text-medium font-bold uppercase tracking-tight">{subValue}</p>
+      {extraInfo && (
+        <div className="mt-3 pt-2.5 border-t border-gray-100/85">
+          {extraInfo}
+        </div>
+      )}
     </div>
   </motion.div>
 );
@@ -290,7 +298,7 @@ const Slides = [
             <span className="text-xs font-black text-medium uppercase tracking-wider flex items-center gap-2">
               <span className="text-gray-400">Total no Trimestre:</span>
               <span className="px-2 py-0.5 bg-red-50 text-[#ff0032] border border-red-100 rounded-md font-mono text-xs">
-                13 Entregas
+                14 Entregas
               </span>
             </span>
           </div>
@@ -332,7 +340,8 @@ const Slides = [
               color: "text-blue-600 bg-blue-50/60 border-blue-100",
               accentColor: "#2563eb",
               items: [
-                "Programa de Estágio"
+                "Programa de Estágio",
+                "Avaliação de Desempenho"
               ]
             },
             {
@@ -425,7 +434,89 @@ const Slides = [
     </SlideWrapper>
   ),
 
-  // SLIDE 2: MÉTODO DE ANÁLISE
+  // SLIDE 2: ESCALA DE MATURIDADE ANALÍTICA
+  () => (
+    <SlideWrapper 
+      title="Modelo de Maturidade em People Analytics" 
+      subtitle="A jornada estratégica da Santa Casa BH: da descrição de fatos passados à ação e tomada de decisão preditiva."
+    >
+      <div className="flex flex-col h-full justify-between mt-2 flex-grow-0">
+        {/* Main Container */}
+        <div className="bg-[#111827] text-white p-8 md:p-10 rounded-[3rem] shadow-2xl relative overflow-hidden border border-gray-800 flex-1 flex flex-col justify-between">
+          {/* Subtle grid background */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
+          
+          {/* Clean Steps Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10 items-stretch py-2">
+            {[
+              {
+                level: "01",
+                name: "Descritivo",
+                question: "O que aconteceu?",
+                icon: BarChart3,
+                desc: "Relatórios históricos e dashboards operacionais estruturados."
+              },
+              {
+                level: "02",
+                name: "Diagnóstico",
+                question: "Por que aconteceu?",
+                icon: Search,
+                desc: "Cruzamento e explicação causal de comportamentos internos."
+              },
+              {
+                level: "03",
+                name: "Preditivo",
+                question: "O que vai acontecer?",
+                icon: Rocket,
+                desc: "Modelagem estatística de tendências para antecipar riscos."
+              },
+              {
+                level: "04",
+                name: "Prescritivo",
+                question: "O que devemos fazer?",
+                icon: Compass,
+                desc: "Recomendações cirúrgicas para apoiar ações da alta liderança.",
+                isTop: true
+              }
+            ].map((step, idx) => {
+              const IconComp = step.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -6, scale: 1.01 }}
+                  className={cn(
+                    "bg-gray-900/60 backdrop-blur-md rounded-2xl p-5 border border-gray-800/80 shadow-lg flex flex-col justify-start min-h-[200px] group hover:border-[#ff0032]/40 hover:bg-gray-900/90 transition-all relative z-20",
+                    step.isTop && "border-[#ff0032]/25 shadow-[#ff0032]/5"
+                  )}
+                >
+                  <div>
+                    <div className="flex justify-between items-center mb-3">
+                      <span className="text-[9px] font-black uppercase text-gray-500 block font-mono">Nível {step.level}</span>
+                    </div>
+
+                    <h5 className="text-sm font-black text-white leading-tight uppercase tracking-tight flex items-center gap-2 group-hover:text-[#ff0032] transition-colors mb-0.5">
+                      <IconComp size={15} className="text-[#ff0032] shrink-0" />
+                      {step.name}
+                    </h5>
+                    <span className="text-[10px] font-bold text-gray-400 block mb-3 italic">{step.question}</span>
+
+                    <p className="text-[11.5px] text-gray-300 font-medium leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </SlideWrapper>
+  ),
+
+  // SLIDE 3: MÉTODO DE ANÁLISE
   () => (
     <SlideWrapper title="MÉTODO DE ANÁLISE" subtitle="As 3 Gerências com Maior Impacto no Absenteísmo no Último Trimestre">
       <div className="space-y-12">
@@ -716,7 +807,28 @@ const Slides = [
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <StatCard title="Absenteísmo" value="3,2%" subValue="Média no trimestre" icon={Activity} trend="2,5 MÉDIA MERCADO" trendColor="text-amber-600" statusIndicator="🟡" />
         <StatCard title="Turnover" value="3,0%" subValue="Média no trimestre" icon={Users} trend="2,5 MÉDIA MERCADO" trendColor="text-green-600" statusIndicator="🟢" />
-        <StatCard title="Acidentes" value="42,3" subValue="Taxa média trimestral" icon={AlertTriangle} trend="17,48 MÉDIA MERCADO" subTrend="Hospital Global" trendColor="text-red-650" statusIndicator="🔴" />
+        <StatCard 
+          title="Acidentes" 
+          value="42,3" 
+          subValue="Taxa média trimestral" 
+          icon={AlertTriangle} 
+          trend="17,48 MÉDIA MERCADO" 
+          subTrend="Hospital Global" 
+          trendColor="text-red-650" 
+          statusIndicator="🔴" 
+          extraInfo={(
+            <div className="flex items-center gap-1 text-[8.5px] font-bold text-medium leading-none">
+              <span className="shrink-0 text-[11px]">🌍</span>
+              <div className="flex items-center gap-1">
+                <span className="text-light uppercase font-black text-[7.5px] tracking-wider">Ref. Global:</span>
+                <span className="font-extrabold text-dark font-mono">22,89</span>
+                <span className="inline-flex items-center gap-0.5 px-1 py-0.5 rounded bg-red-50 text-[#ff0032] border border-red-100 text-[7px] font-black uppercase tracking-wider leading-none shrink-0">
+                  🔴 Distante
+                </span>
+              </div>
+            </div>
+          )}
+        />
         <StatCard title="Impacto Financeiro" value="R$ 227k" subValue="Custo Absenteísmo" icon={DollarSign} trend="R$ 61/colab" trendColor="text-gray-500" />
       </div>
       
@@ -861,23 +973,7 @@ const Slides = [
             </div>
           </div>
 
-          {/* Mini box lateral para Acidentes de Trabalho */}
-          <div className="bg-gray-50 border border-gray-100 p-5 rounded-2xl flex items-center justify-between gap-4">
-            <div className="flex items-start gap-2.5">
-              <span className="text-xl mt-0.5">🌍</span>
-              <div className="space-y-0.5">
-                <span className="text-[10px] font-black uppercase tracking-wider text-dark flex items-center gap-1.5 flex-wrap">
-                  Referência Global: 22,89
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-red-50 text-red-600 border border-red-100 text-[8px] font-black uppercase tracking-wider leading-none">
-                    🔴 Distante
-                  </span>
-                </span>
-                <p className="text-[11px] font-bold text-medium leading-relaxed">
-                  Comparação qualitativa adicionada apenas para referência de posicionamento.
-                </p>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -999,51 +1095,129 @@ const Slides = [
           </div>
 
           {/* KPIs Grandes à Direita */}
-          <div className="lg:col-span-4 flex flex-col gap-4 h-full">
-            <div className="flex-1 bg-white p-6 rounded-3xl border-2 border-gray-100 shadow-sm flex flex-col justify-center">
+          <div className="lg:col-span-4 flex flex-col gap-6 h-full justify-center">
+            <div className="bg-white p-6 rounded-3xl border-2 border-gray-100 shadow-sm flex flex-col justify-center min-h-[130px]">
               <span className="text-[10px] font-black text-light uppercase tracking-widest mb-1 block">Risco Geral</span>
               <span className="text-4xl font-black text-[#ff0032] tabular-nums">42,3%</span>
               <span className="text-xs font-bold text-dark uppercase tracking-tighter">Insegurança Assistencial</span>
             </div>
-            <div className="flex-1 bg-white p-6 rounded-3xl border-2 border-gray-100 shadow-sm flex flex-col justify-center">
+            <div className="bg-white p-6 rounded-3xl border-2 border-gray-100 shadow-sm flex flex-col justify-center min-h-[130px]">
               <span className="text-[10px] font-black text-light uppercase tracking-widest mb-1 block">Afastamentos</span>
               <span className="text-4xl font-black text-dark tabular-nums">3,5%</span>
               <span className="text-xs font-bold text-dark uppercase tracking-tighter">Taxa de Absenteísmo</span>
             </div>
-            <div className="flex-1 bg-white p-6 rounded-3xl border-2 border-[#ff0032] shadow-sm flex flex-col justify-center">
-              <span className="text-[10px] font-black text-[#ff0032] uppercase tracking-widest mb-1 block">Criticalidade</span>
-              <span className="text-4xl font-black text-dark tabular-nums">62%</span>
-              <span className="text-xs font-bold text-dark uppercase tracking-tighter">Turnover Concentrado</span>
-            </div>
           </div>
         </div>
 
-        {/* Faixa de Impactos Inferior */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-           <div className="bg-[#ff0032] p-5 rounded-2xl shadow-sm border border-white/5 text-white">
-              <h6 className="text-xs font-black uppercase tracking-widest mb-3 flex items-center gap-2">
-                <Zap size={14} className="text-white/80" /> Insegurança gera Afastamentos
-              </h6>
-              <p className="text-[11px] leading-relaxed font-medium">
-                 O alto índice de acidentes com perfurocortantes (plantão diurno assistencial) e a falta de uso de EPIs contribuem diretamente para o <span className="font-black text-white decoration-white/30 underline">Absenteísmo</span>.
-              </p>
-           </div>
-           <div className="bg-gray-100 p-5 rounded-2xl border border-gray-200 text-dark">
-              <h6 className="text-xs font-black uppercase tracking-widest mb-3 flex items-center gap-2">
-                <Activity size={14} className="text-[#ff0032]" /> Sobrecarga e Saúde
-              </h6>
-              <p className="text-[11px] leading-relaxed font-bold text-medium">
-                 Absenteísmo concentra-se em doenças osteomusculares e mentais, sugerindo que colaboradores estão sobrecarregados por <span className="text-[#ff0032]">fadiga e desgaste</span>.
-              </p>
-           </div>
-           <div className="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm text-dark">
-              <h6 className="text-xs font-black uppercase tracking-widest mb-3 flex items-center gap-2">
-                <RotateCcw size={14} className="text-[#ff0032]" /> Instabilidade Gera Fuga
-              </h6>
-              <p className="text-[11px] leading-relaxed font-bold text-medium">
-                 Insegurança e sobrecarga culminam no <span className="text-[#ff0032] font-black">Turnover</span>. O cenário encurta o ciclo de vida dos colaboradores, afetando principalmente os jovens.
-              </p>
-           </div>
+        {/* Seção da Tabela de Turnover por Faixa de Tempo (conforme a foto do usuário) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-4 border-t border-gray-100">
+          {/* A Tabela */}
+          <div className="lg:col-span-7 bg-[#1c2331] text-white p-5 rounded-3xl shadow-lg border border-gray-800 flex flex-col justify-between">
+            <div>
+              <span className="text-[10px] font-black text-[#ff0032] uppercase tracking-wider block mb-3 font-mono">Rotatividade por Faixa de Tempo</span>
+              <div className="overflow-hidden rounded-xl border border-gray-800">
+                <table className="w-full text-center border-collapse">
+                  <thead>
+                    <tr className="bg-[#ff0032] text-white font-black text-[9px] uppercase tracking-wider">
+                      <th className="p-2 text-left">Faixa Tempo</th>
+                      <th className="p-2">Efetivo</th>
+                      <th className="p-2">Admitidos</th>
+                      <th className="p-2">Demitidos</th>
+                      <th className="p-2">% Turnover</th>
+                    </tr>
+                  </thead>
+                  <tbody className="font-mono text-[10px] divide-y divide-gray-800/60 bg-[#111827]">
+                    {/* Row 0-4 Anos - HIGHLIGHTED */}
+                    <tr className="border-2 border-white bg-gray-900 font-extrabold text-white">
+                      <td className="p-2 text-left font-sans text-xs flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                        0 - 4 ANOS
+                      </td>
+                      <td className="p-2">1472</td>
+                      <td className="p-2">93</td>
+                      <td className="p-2">60</td>
+                      <td className="p-2">
+                        <span className="bg-red-600/40 text-red-400 font-extrabold px-1.5 py-0.5 rounded border border-red-500/30">
+                          5,2%
+                        </span>
+                      </td>
+                    </tr>
+                    {/* Row 10-14 Anos */}
+                    <tr className="hover:bg-gray-950/40 text-gray-400">
+                      <td className="p-2 text-left font-sans">10 - 14 ANOS</td>
+                      <td className="p-2">296</td>
+                      <td className="p-2">0</td>
+                      <td className="p-2">0</td>
+                      <td className="p-2 text-emerald-400 font-bold">0,0% ⭐</td>
+                    </tr>
+                    {/* Row 15 a 19 Anos */}
+                    <tr className="hover:bg-gray-950/40 text-gray-400">
+                      <td className="p-2 text-left font-sans">15 A 19 ANOS</td>
+                      <td className="p-2">130</td>
+                      <td className="p-2">1</td>
+                      <td className="p-2">0</td>
+                      <td className="p-2 text-emerald-400 font-bold">0,4% ⭐</td>
+                    </tr>
+                    {/* Row 20 a 24 Anos */}
+                    <tr className="hover:bg-gray-950/40 text-gray-400">
+                      <td className="p-2 text-left font-sans">20 A 24 ANOS</td>
+                      <td className="p-2">107</td>
+                      <td className="p-2">3</td>
+                      <td className="p-2">5</td>
+                      <td className="p-2 text-red-400 font-bold bg-red-950/20">3,7%</td>
+                    </tr>
+                    {/* Row 25 a 29 Anos */}
+                    <tr className="hover:bg-gray-950/40 text-gray-400">
+                      <td className="p-2 text-left font-sans">25 A 29 ANOS</td>
+                      <td className="p-2">149</td>
+                      <td className="p-2">11</td>
+                      <td className="p-2">4</td>
+                      <td className="p-2 text-red-400 font-bold bg-red-950/20">5,0%</td>
+                    </tr>
+                    {/* Row 30 Anos ou Mais */}
+                    <tr className="hover:bg-gray-950/40 text-gray-400">
+                      <td className="p-2 text-left font-sans">30 ANOS OU MAIS</td>
+                      <td className="p-2">1117</td>
+                      <td className="p-2">23</td>
+                      <td className="p-2">26</td>
+                      <td className="p-2 text-emerald-450">2,2%</td>
+                    </tr>
+                    {/* Row 5-9 Anos */}
+                    <tr className="hover:bg-gray-950/40 text-gray-400">
+                      <td className="p-2 text-left font-sans">5 - 9 ANOS</td>
+                      <td className="p-2">512</td>
+                      <td className="p-2">0</td>
+                      <td className="p-2">2</td>
+                      <td className="p-2 text-emerald-400 font-bold">0,2% ⭐</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <p className="text-[8px] text-gray-500 mt-2 font-mono text-right italic">
+              ⭐ Indica melhor estabilidade de retenção no período analítico.
+            </p>
+          </div>
+
+          {/* O Texto Explicativo (conforme a foto do usuário) com seta indicadora */}
+          <div className="lg:col-span-5 bg-red-50/60 border border-red-100 p-6 rounded-3xl flex flex-col justify-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-4 opacity-5">
+              <Compass size={180} className="text-[#ff0032]" />
+            </div>
+            <div className="flex gap-4 items-start relative z-10">
+              <span className="text-3xl shrink-0">🎯</span>
+              <div className="space-y-4">
+                <span className="text-[10px] font-black text-[#ff0032] uppercase tracking-[0.2em] block">Retenção de Talentos</span>
+                <p className="text-sm font-bold text-dark leading-relaxed">
+                  A instabilidade gerada pelos altos índices de acidentes e absenteísmo compromete a retenção, resultando em um ciclo de vida reduzido: <span className="text-[#ff0032] font-black underline decoration-2">62% das demissões concentram-se na faixa de maior rotatividade</span>, ocasionando um custo alto de rescisão para a instituição.
+                </p>
+                <div className="flex items-center gap-2 pt-2 border-t border-red-100 text-xs font-bold text-medium">
+                  <ArrowRight size={14} className="text-[#ff0032] shrink-0" />
+                  <span>Foco: Mitigação de desvios na entrada (Onboarding)</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </SlideWrapper>
@@ -1160,32 +1334,61 @@ const Slides = [
         {/* Reconhecimento & Liderança */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
           <div className="lg:col-span-12 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-xl">
-            <h6 className="text-[10px] font-black text-dark uppercase tracking-[0.4em] mb-8 text-center">Métricas de Reconhecimento & Liderança</h6>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+            <h6 className="text-[10px] font-black text-[#ff0032] uppercase tracking-[0.4em] mb-8 text-center">Métricas de Reconhecimento & Liderança</h6>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
               {[
-                { label: 'Valorização', val: '50', color: '#ff0032' },
-                { label: 'Crescimento', val: '64.7', color: '#323232' },
-                { label: 'Respeito', val: '58.8', color: '#ff0032' },
-                { label: 'Colegas', val: '76.5', color: '#323232' },
-                { label: 'Gerente', val: '76.5', color: '#323232' },
-                { label: 'Ética', val: '70.6', color: '#323232' },
-              ].map((m, i) => (
-                <div key={i} className="flex flex-col items-center group">
-                  <div className="relative w-20 h-20 mb-4">
-                    <svg className="w-full h-full -rotate-90">
-                      <circle cx="40" cy="40" r="35" fill="none" stroke="#f3f4f6" strokeWidth="6" />
-                      <motion.circle 
-                        cx="40" cy="40" r="35" fill="none" stroke={m.color} strokeWidth="6" strokeDasharray="219.9"
-                        initial={{ strokeDashoffset: 219.9 }}
-                        animate={{ strokeDashoffset: 219.9 - (219.9 * Number(m.val)) / 100 }}
-                        transition={{ duration: 1.5, delay: i * 0.1 }}
-                      />
-                    </svg>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                       <span className="text-xs font-black text-dark">{m.val}%</span>
-                    </div>
+                {
+                  title: 'RECONHECIMENTO',
+                  items: [
+                    { label: 'Valorização', val: '50.00', color: '#ff0032' },
+                    { label: 'Oportunidade de Crescimento', val: '64.71', color: '#ff0032' },
+                    { label: 'Reconhecimento', val: '62.50', color: '#ff0032' },
+                  ]
+                },
+                {
+                  title: 'RESPEITO',
+                  items: [
+                    { label: 'Chefia Imediata', val: '58.82', color: '#ff0032' },
+                    { label: 'Colegas de Trabalho', val: '76.47', color: '#10b981' },
+                    { label: 'Gerente', val: '76.47', color: '#10b981' },
+                  ]
+                },
+                {
+                  title: 'CHEFIA IMEDIATA',
+                  items: [
+                    { label: 'Agilidade na Resposta', val: '64.71', color: '#ff0032' },
+                    { label: 'Distribuição de Tarefas', val: '64.71', color: '#ff0032' },
+                    { label: 'Ético e Justo', val: '70.59', color: '#10b981' },
+                  ]
+                }
+              ].map((group, groupIdx) => (
+                <div key={groupIdx} className={`flex flex-col items-center ${groupIdx > 0 ? 'pt-6 md:pt-0 md:pl-6' : ''}`}>
+                  <span className="text-[10px] font-black text-dark tracking-[0.15em] mb-6 uppercase text-center bg-gray-50 px-4 py-1.5 rounded-full border border-gray-100">
+                    {group.title}
+                  </span>
+                  <div className="grid grid-cols-3 gap-2 w-full justify-items-center">
+                    {group.items.map((m, i) => (
+                      <div key={i} className="flex flex-col items-center">
+                        <div className="relative w-16 h-16 mb-2 shrink-0">
+                          <svg className="w-full h-full -rotate-90">
+                            <circle cx="32" cy="32" r="28" fill="none" stroke="#f3f4f6" strokeWidth="4.5" />
+                            <motion.circle 
+                              cx="32" cy="32" r="28" fill="none" stroke={m.color} strokeWidth="4.5" strokeDasharray="175.92"
+                              initial={{ strokeDashoffset: 175.92 }}
+                              animate={{ strokeDashoffset: 175.92 - (175.92 * Number(m.val)) / 100 }}
+                              transition={{ duration: 1.5, delay: i * 0.1 }}
+                            />
+                          </svg>
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="text-[9.5px] font-black text-dark tracking-tighter">{m.val}%</span>
+                          </div>
+                        </div>
+                        <span className="text-[8.5px] font-bold text-light uppercase tracking-wider text-center leading-tight max-w-[85px] line-clamp-2 h-7 overflow-hidden">
+                          {m.label}
+                        </span>
+                      </div>
+                    ))}
                   </div>
-                  <span className="text-[9px] font-black text-light uppercase tracking-widest text-center">{m.label}</span>
                 </div>
               ))}
             </div>
@@ -1278,178 +1481,7 @@ const Slides = [
     </SlideWrapper>
   ),
 
-  // SLIDE 8: COMPARATIVO CONSOLIDADO
-  () => (
-    <SlideWrapper 
-      title="Comparativo Consolidado – GERÊNCIAS ANALISADAS x SANTA CASA BH" 
-      subtitle="Visão comparativa dos principais indicadores do 1º trimestre de 2026, permitindo avaliar o posicionamento institucional frente às gerências analisadas."
-    >
-      <div className="flex flex-col h-full justify-between gap-8 mt-4">
-        <div className="bg-white rounded-[2rem] border border-gray-100 shadow-xl overflow-hidden flex-1">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-gray-50/80 border-b border-gray-100">
-                  <th className="p-6 text-[11px] font-black text-dark uppercase tracking-wider">Indicador</th>
-                  <th className="p-6 text-[11px] font-black text-dark uppercase tracking-wider">GERÊNCIAS ANALISADAS</th>
-                  <th className="p-6 text-[11px] font-black text-dark uppercase tracking-wider">Média / Ref. Global</th>
-                  <th className="p-6 text-[11px] font-black text-dark uppercase tracking-wider">Situação Relativa</th>
-                  <th className="p-6 text-[11px] font-black text-dark uppercase tracking-wider">Análise de Contexto</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-50 font-bold text-sm">
-                {[
-                  {
-                    name: "Absenteísmo (Trimestral)",
-                    sc: "3,2%",
-                    global: "2,1%",
-                    status: "Moderadamente distante",
-                    statusEmoji: "🟡",
-                    statusColor: "text-amber-600 bg-amber-50 border-amber-100",
-                    statusDot: "bg-amber-500",
-                    desc: "Indicador com comportamento acima da referência analisada, sugerindo oportunidade para aprofundamento das avaliações sobre distribuição da carga operacional e dinâmica das equipes."
-                  },
-                  {
-                    name: "Acidentes de Trabalho (Taxa)",
-                    sc: "42,3",
-                    global: "22,89",
-                    status: "Distante",
-                    statusEmoji: "🔴",
-                    statusColor: "text-red-600 bg-red-50 border-red-100",
-                    statusDot: "bg-[#ff0032]",
-                    desc: "Resultado apresenta distanciamento em relação ao cenário comparativo, indicando necessidade de acompanhamento das condições operacionais e fatores associados à exposição ocupacional."
-                  },
-                  {
-                    name: "Turnover (Média Mensal)",
-                    sc: "3,0%",
-                    global: "2,5%",
-                    status: "Próximo",
-                    statusEmoji: "🟢",
-                    statusColor: "text-green-600 bg-green-50 border-green-100",
-                    statusDot: "bg-green-500",
-                    desc: "Indicador demonstra comportamento próximo às referências analisadas, sugerindo estabilidade relativa no movimento de desligamentos do período."
-                  },
-                  {
-                    name: "Pesquisa de Clima (Satisfação)",
-                    sc: "76,74%",
-                    global: "76,74",
-                    status: "Próximo",
-                    statusEmoji: "🟢",
-                    statusColor: "text-green-600 bg-green-50 border-green-100",
-                    statusDot: "bg-green-500",
-                    desc: "Resultado mantém aderência ao cenário observado, contribuindo para uma leitura positiva da percepção organizacional no período analisado."
-                  }
-                ].map((row, idx) => (
-                  <tr key={idx} className="hover:bg-gray-50/50 transition-colors">
-                    <td className="p-6 font-extrabold text-dark tracking-tight">{row.name}</td>
-                    <td className="p-6 font-mono text-dark">{row.sc}</td>
-                    <td className="p-6 font-mono text-medium">{row.global}</td>
-                    <td className="p-6">
-                      <span className="px-3 py-1.5 rounded-full border text-xs flex items-center gap-1.5 w-fit uppercase font-black tracking-wider bg-gray-50 text-gray-600 border-gray-100">
-                        <span className="text-xs leading-none shrink-0">{row.statusEmoji}</span>
-                        {row.status}
-                      </span>
-                    </td>
-                    <td className="p-6 text-xs text-medium font-medium leading-relaxed max-w-sm">{row.desc}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div className="p-5 bg-gray-50 border border-gray-100 rounded-3xl flex items-start gap-4">
-          <span className="text-xl">💡</span>
-          <div>
-            <span className="text-[10px] font-black text-dark uppercase tracking-[0.2em] block mb-1">Nota Metodológica Importante</span>
-            <p className="text-xs text-medium leading-relaxed font-semibold">
-              Este comparativo consolidado atua como uma <span className="text-[#ff0032] font-extrabold font-black">camada adicional de contextualização</span>. Todas as metas, gráficos, conclusões e análises da apresentação oficial interna das GERÊNCIAS ANALISADAS foram mantidos integralmente preservados, servindo estas referências externas apenas como apoio executivo e posicionamento.
-            </p>
-          </div>
-        </div>
-      </div>
-    </SlideWrapper>
-  ),
-
-  // SLIDE 9: SÍNTESE ANALÍTICA
-  () => (
-    <SlideWrapper title="Síntese de Recomendações" subtitle="Principais evidências observadas nas gerências de maior impacto">
-       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-4">
-          {[
-            { 
-              title: 'Saúde e Absenteísmo', 
-              icon: Activity, 
-              actions: [
-                'Concentração em CIDs osteomusculares e transtornos mentais;',
-                'Impacto predominante nas gerências críticas;',
-                'Indícios de recorrência e permanência reduzida.'
-              ],
-              impact: 'PRESSÃO SOBRE SAÚDE E CUSTOS'
-            },
-            { 
-              title: 'Segurança Assistencial', 
-              icon: ShieldCheck, 
-              actions: [
-                'Maior concentração de acidentes nas áreas analisadas;',
-                'Exposição ocupacional elevada;',
-                'Necessidade de monitoramento contínuo dos indicadores.'
-              ],
-              impact: 'PRESSÃO SOBRE SEGURANÇA OPERACIONAL'
-            },
-            { 
-              title: 'Retenção e Permanência', 
-              icon: Users, 
-              actions: [
-                'Concentração da rotatividade nas áreas críticas;',
-                'Permanência reduzida;',
-                'Faixas críticas de desligamento identificadas.'
-              ],
-              impact: 'PRESSÃO SOBRE RETENÇÃO'
-            }
-          ].map((card, i) => (
-            <motion.div 
-              key={i}
-              whileHover={{ y: -10 }}
-              className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col h-full"
-            >
-              <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-dark mb-6">
-                <card.icon size={24} />
-              </div>
-              <h5 className="text-xl font-black text-dark mb-6 tracking-tight">{card.title}</h5>
-              <ul className="space-y-4 mb-8 flex-1">
-                {card.actions.map((act, j) => (
-                  <li key={j} className="flex gap-3 text-sm text-medium font-bold">
-                    <ChevronRight size={16} className="text-[#ff0032] shrink-0 mt-0.5" />
-                    {act}
-                  </li>
-                ))}
-              </ul>
-              <div className="pt-6 border-t border-gray-50 mt-auto">
-                 <span className="text-[10px] font-black text-[#ff0032] uppercase tracking-widest">{card.impact}</span>
-              </div>
-            </motion.div>
-          ))}
-       </div>
-       
-       <div className="mt-12 bg-[#ff0032] p-10 rounded-[3rem] text-white flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-10">
-             <Target size={180} />
-          </div>
-          <div className="relative z-10 max-w-xl">
-             <h6 className="text-sm font-black uppercase tracking-[0.4em] mb-4 text-white/80">Considerações Estratégicas</h6>
-             <h2 className="text-3xl font-black mb-4 leading-tight uppercase">As evidências identificadas indicam concentração de impacto nas gerências de Hotelaria, Cuidados Clínicos e Nutrição e Dietética</h2>
-             <p className="text-white/70 font-medium">Os achados reforçam a necessidade de acompanhamento direcionado e monitoramento contínuo das gerências críticas.</p>
-          </div>
-          <div className="relative z-10">
-            <button className="bg-white text-[#ff0032] px-8 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-dark hover:text-white transition-all shadow-xl flex items-center gap-3">
-              Apoio à Tomada de Decisão <ArrowRight size={18} />
-            </button>
-          </div>
-       </div>
-     </SlideWrapper>
-  ),
-
-  // SLIDE 10: ENCERRAMENTO
+  // SLIDE 8: ENCERRAMENTO
   () => (
     <div className="h-full bg-dark flex flex-col items-center justify-center text-center p-12 relative overflow-hidden">
        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[1px] bg-white/5 skew-y-12" />
