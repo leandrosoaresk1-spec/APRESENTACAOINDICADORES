@@ -222,12 +222,16 @@ const REFERRAL_GERENCIAS_DATA = [
   { rank: "14", name: "GGCL", fullName: "GGCL – Governança Clínica", count: 23, percent: 2.4, isTop5: false },
 ];
 
-const REFERRAL_TOP_VAGAS_DATA = [
-  { rank: "01", name: "Enfermeiro(a) - Especialidades Clínicas", count: 96 },
-  { rank: "02", name: "Auxiliar Administrativo - Centro de Diagnóstico e Tratamento - Santa Casa BH", count: 61 },
-  { rank: "03", name: "Enfermeiro(a) - Equipe de Cuidados Paliativos", count: 42 },
-  { rank: "04", name: "Técnico(a) de Enfermagem - CDT Hemodinâmica", count: 41 },
-  { rank: "05", name: "Técnico(a) de Radiologia - Santa Casa BH", count: 40 },
+const REFERRAL_TOP_CARGOS_DATA = [
+  { rank: "1º", name: "TÉCNICO DE ENFERMAGEM", count: 745, isTop3: true },
+  { rank: "2º", name: "ENFERMEIRO", count: 401, isTop3: true },
+  { rank: "3º", name: "AUXILIAR ADMINISTRATIVO", count: 202, isTop3: true },
+  { rank: "4º", name: "ASSISTENTE ADMINISTRATIVO I", count: 188, isTop3: false },
+  { rank: "5º", name: "ASSISTENTE ADMINISTRATIVO II", count: 152, isTop3: false },
+  { rank: "6º", name: "ANALISTA ADMINISTRATIVO PL", count: 93, isTop3: false },
+  { rank: "7º", name: "PSICÓLOGO", count: 66, isTop3: false },
+  { rank: "8º", name: "TÉCNICO DE RADIOLOGIA", count: 64, isTop3: false },
+  { rank: "9º", name: "ESTAGIÁRIO NÍVEL SUPERIOR", count: 60, isTop3: false },
 ];
 
 const REFERRAL_TOP_INDICANTES_DATA = [
@@ -529,10 +533,10 @@ const Slides = [
     </SlideWrapper>
   ),
 
-  // SLIDE 3: AGENDA EXECUTIVA
+  // SLIDE 3: VISÃO DO TRIMESTRE
   () => (
     <SlideWrapper 
-      title="Agenda Executiva" 
+      title="VISÃO DO TRIMESTRE" 
       subtitle="Visão geral dos temas estratégicos apresentados no Relatório de Atração & Seleção – 2º Trimestre de 2026."
     >
       <div className="flex flex-col h-full justify-between gap-6 py-2">
@@ -542,12 +546,12 @@ const Slides = [
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-[#ff0032] animate-pulse" />
               <span className="text-[11px] font-black uppercase tracking-widest text-[#ff0032] font-mono">
-                Estrutura de Apresentação • Agenda
+                Estrutura de Apresentação • Visão do Trimestre
               </span>
             </div>
           </div>
           <div className="flex items-center gap-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest hidden md:flex">
-            <span className="text-dark font-black">01. Agenda Executiva</span>
+            <span className="text-dark font-black">01. Visão do Trimestre</span>
             <span>→</span>
             <span>02. Panorama de Candidaturas</span>
             <span>→</span>
@@ -1058,7 +1062,7 @@ const Slides = [
             </div>
           </div>
 
-          {/* Chart 3: Top 5 — Vagas com Mais Indicações (3 columns) */}
+          {/* Chart 3: Top Cargos com Mais Indicações (3 columns) */}
           <div className="lg:col-span-3 bg-white p-3.5 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 pb-1.5 border-b border-gray-100 mb-2">
@@ -1066,43 +1070,55 @@ const Slides = [
                   <Briefcase size={16} />
                 </div>
                 <div>
-                  <h4 className="text-xs font-black text-dark uppercase tracking-tight">Top 5 — Vagas Mais Indicadas</h4>
+                  <h4 className="text-xs font-black text-dark uppercase tracking-tight">Top Cargos Mais Indicados</h4>
                   <span className="text-[9px] font-bold text-gray-400 uppercase">Ranking por Volume</span>
                 </div>
               </div>
 
-              <div className="space-y-1.5 mt-2">
-                {REFERRAL_TOP_VAGAS_DATA.map((item, idx) => (
+              <div className="flex flex-col space-y-1 overflow-y-auto max-h-[380px] pr-1">
+                {REFERRAL_TOP_CARGOS_DATA.map((item, idx) => (
                   <div 
                     key={idx} 
-                    className="p-1.5 px-2 rounded-xl border bg-gray-50/70 border-gray-100 flex flex-col gap-1 hover:border-red-100 transition-all"
+                    className={cn(
+                      "p-1 px-1.5 rounded-lg border flex items-center justify-between gap-1 transition-all",
+                      item.isTop3 
+                        ? "bg-red-50/50 border-red-200/80" 
+                        : "bg-gray-50/60 border-gray-100"
+                    )}
                   >
-                    <div className="flex items-start justify-between gap-1">
-                      <div className="flex items-start gap-1.5 min-w-0 flex-1">
-                        <span className="w-3.5 h-3.5 rounded text-[8.5px] font-black font-mono flex items-center justify-center shrink-0 bg-[#ff0032] text-white mt-0.5">
-                          {item.rank}
-                        </span>
-                        <span className="text-[10px] font-bold text-dark leading-snug">
-                          {item.name}
-                        </span>
-                      </div>
-                      <span className="text-[9px] font-black font-mono text-[#ff0032] bg-red-50 px-1.5 py-0.5 rounded border border-red-100 shrink-0 whitespace-nowrap">
-                        {item.count}
+                    <div className="flex items-center gap-1 min-w-0 flex-1">
+                      <span className={cn(
+                        "w-4 h-3.5 rounded text-[8px] font-black font-mono flex items-center justify-center shrink-0",
+                        item.isTop3 ? "bg-[#ff0032] text-white" : "bg-gray-200 text-gray-600"
+                      )}>
+                        {item.rank}
+                      </span>
+                      <span className={cn("text-[9.5px] font-bold truncate leading-tight", item.isTop3 ? "text-[#ff0032]" : "text-dark")} title={item.name}>
+                        {item.name}
                       </span>
                     </div>
-                    <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-[#ff0032] rounded-full"
-                        style={{ width: `${(item.count / 96) * 100}%` }}
-                      />
+
+                    <div className="flex items-center gap-1 shrink-0">
+                      <div className="w-10 h-1 bg-gray-200 rounded-full overflow-hidden hidden sm:block">
+                        <div 
+                          className="h-full rounded-full"
+                          style={{ 
+                            width: `${(item.count / 745) * 100}%`,
+                            backgroundColor: item.isTop3 ? '#ff0032' : '#64748b'
+                          }}
+                        />
+                      </div>
+                      <span className={cn("text-[10px] font-mono font-black shrink-0 min-w-[28px] text-right", item.isTop3 ? "text-[#ff0032]" : "text-dark")}>
+                        {item.count}
+                      </span>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-2 border-t border-gray-100 text-[8.5px] text-gray-400 font-mono flex justify-between items-center mt-2">
-              <span>Total Top 5: 279 ind.</span>
+            <div className="pt-1.5 border-t border-gray-100 text-[8.5px] text-gray-400 font-mono flex justify-between items-center mt-1">
+              <span>Total: 1.971 ind.</span>
               <span className="text-[#ff0032] font-bold">Santa Casa BH</span>
             </div>
           </div>
