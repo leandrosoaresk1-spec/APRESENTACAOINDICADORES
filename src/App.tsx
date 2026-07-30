@@ -183,12 +183,12 @@ const AGE_DISTRIBUTION_DATA = [
 ];
 
 const CANDIDACY_AGE_DATA = [
-  { range: '31 - 40 anos', candidaturas: 20341, formatted: '20.341' },
-  { range: '25 - 30 anos', candidaturas: 20173, formatted: '20.173' },
-  { range: '18 - 24 anos', candidaturas: 16327, formatted: '16.327' },
-  { range: '41 - 50 anos', candidaturas: 14082, formatted: '14.082' },
-  { range: 'Mais que 50', candidaturas: 4360, formatted: '4.360' },
-  { range: 'Outros', candidaturas: 310, formatted: '310' },
+  { range: '31 - 40 anos', generation: 'Millennials', candidaturas: 20341, formatted: '20.341' },
+  { range: '25 - 30 anos', generation: 'Geração Z', candidaturas: 20173, formatted: '20.173' },
+  { range: '18 - 24 anos', generation: 'Geração Z', candidaturas: 16327, formatted: '16.327' },
+  { range: '41 - 50 anos', generation: 'Geração X', candidaturas: 14082, formatted: '14.082' },
+  { range: 'Mais que 50', generation: 'Geração X', candidaturas: 4360, formatted: '4.360' },
+  { range: 'Outros', generation: 'Outros', candidaturas: 310, formatted: '310' },
 ];
 
 const EDUCATION_DATA = [
@@ -207,20 +207,46 @@ const TOP_ROLES_CANDIDACY = [
 ];
 
 const REFERRAL_GERENCIAS_DATA = [
-  { rank: "01", name: "SAEF", fullName: "SAEF – Superintendência Educacional", count: 122, percent: 13.0, isTop5: true },
-  { rank: "02", name: "GTRA", fullName: "GTRA – Inst. de Transplantes", count: 93, percent: 9.9, isTop5: true },
-  { rank: "03", name: "GEPE", fullName: "GEPE – Gestão de Pessoas", count: 73, percent: 7.8, isTop5: true },
-  { rank: "04", name: "AFFC", fullName: "AFFC – Faturamento SUS", count: 54, percent: 5.7, isTop5: true },
-  { rank: "05", name: "TEEC", fullName: "TEEC – Cuidados Clínicos", count: 51, percent: 5.4, isTop5: true },
-  { rank: "06", name: "GEAM", fullName: "GEAM – Gerência Ambulatorial", count: 46, percent: 4.9, isTop5: false },
-  { rank: "07", name: "GUCC", fullName: "GUCC – Cuidados Cirúrgicos", count: 38, percent: 4.0, isTop5: false },
-  { rank: "08", name: "GEOP", fullName: "GEOP – Operacional HSL", count: 37, percent: 3.9, isTop5: false },
-  { rank: "09", name: "GPPO", fullName: "GPPO – Planejamento e Projetos", count: 29, percent: 3.1, isTop5: false },
-  { rank: "10", name: "GEMA", fullName: "GEMA – Eng. e Manutenção", count: 28, percent: 3.0, isTop5: false },
-  { rank: "11", name: "GSGP", fullName: "GSGP – Segurança e Patrimônio", count: 27, percent: 2.9, isTop5: false },
-  { rank: "12", name: "GJSC", fullName: "GJSC – Jurídica e Documentos", count: 24, percent: 2.6, isTop5: false },
-  { rank: "13", name: "GESC", fullName: "GESC – Suporte Clínico", count: 23, percent: 2.4, isTop5: false },
-  { rank: "14", name: "GGCL", fullName: "GGCL – Governança Clínica", count: 23, percent: 2.4, isTop5: false },
+  { rank: "01", name: "MSDT", fullName: "MSDT – GERÊNCIA DE SERVIÇOS DE DIAGNÓSTICO E TRATAMENTO", count: 359, percentStr: "14,1%", isTop5: true },
+  { rank: "02", name: "TEEC", fullName: "TEEC – GERÊNCIA DE CUIDADOS CLÍNICOS", count: 344, percentStr: "13,5%", isTop5: true },
+  { rank: "03", name: "TECT", fullName: "TECT – GERÊNCIA DE UNIDADE DE ALTA COMPLEXIDADE", count: 200, percentStr: "7,9%", isTop5: true },
+  { rank: "04", name: "GCMI", fullName: "GCMI – GERÊNCIA DE CUIDADOS MATERNO INFANTIS", count: 145, percentStr: "5,7%", isTop5: true },
+  { rank: "05", name: "GEAS", fullName: "GEAS – GERÊNCIA ASSISTENCIAL DO SÃO LUCAS HOSPITAL PARTICULAR E CONVÊNIOS", count: 133, percentStr: "5,2%", isTop5: true },
+  { rank: "06", name: "GEAM", fullName: "GEAM – GERENCIA AMBULATORIAL - CEM", count: 128, percentStr: "5,0%", isTop5: false },
+  { rank: "07", name: "GEON", fullName: "GEON – GERÊNCIA DE CUIDADOS ONCOLÓGICOS", count: 121, percentStr: "4,8%", isTop5: false },
+  { rank: "08", name: "GESU", fullName: "GESU – GERÊNCIA DE SUPRIMENTOS", count: 116, percentStr: "4,6%", isTop5: false },
+  { rank: "09", name: "GUCC", fullName: "GUCC – GERENCIA DE CUIDADOS CIRÚRGICOS", count: 108, percentStr: "4,2%", isTop5: false },
+  { rank: "10", name: "GTRA", fullName: "GTRA – GERÊNCIA DO INSTITUTO DE TRANSPLANTE", count: 95, percentStr: "3,7%", isTop5: false },
+  { rank: "11", name: "GESC", fullName: "GESC – GERÊNCIA DE SUPORTE CLÍNICO", count: 70, percentStr: "2,7%", isTop5: false },
+  { rank: "12", name: "GEGG", fullName: "GEGG – GERÊNCIA DE HOTELARIA E FACILITIES", count: 62, percentStr: "2,4%", isTop5: false },
+  { rank: "13", name: "GANF", fullName: "GANF – GERÊNCIA AMBULATORIAL DE NEFROLOGIA", count: 58, percentStr: "2,3%", isTop5: false },
+  { rank: "14", name: "GEPE", fullName: "GEPE – GERÊNCIA DE GESTÃO DE PESSOAS", count: 55, percentStr: "2,2%", isTop5: false },
+  { rank: "15", name: "GMRS", fullName: "GMRS – GERÊNCIA DE RESPONSABILIDADE SOCIAL E MOBILIZAÇÃO DE RECURSOS", count: 51, percentStr: "2,0%", isTop5: false },
+  { rank: "16", name: "GPPO", fullName: "GPPO – GERÊNCIA DE PLANEJAMENTO, PROJETOS E ORÇAMENTO", count: 50, percentStr: "2,0%", isTop5: false },
+  { rank: "17", name: "GAOF", fullName: "GAOF – GERÊNCIA AMBULATORIAL OFTALMOLÓGICA", count: 49, percentStr: "1,9%", isTop5: false },
+  { rank: "18", name: "GEAD", fullName: "GEAD – GERENCIA ADMINISTRATIVA", count: 43, percentStr: "1,7%", isTop5: false },
+  { rank: "19", name: "GEGCQ", fullName: "GEGCQ – GERÊNCIA DE GOVERNANÇA CORPORATIVA E QUALIDADE", count: 38, percentStr: "1,5%", isTop5: false },
+  { rank: "20", name: "SAEF", fullName: "SAEF – SUPERINTENDÊNCIA DE ADMINISTRAÇÃO EDUCACIONAL DA FACULDADE DE SAÚDE SANTA CASA BH", count: 38, percentStr: "1,5%", isTop5: false },
+  { rank: "21", name: "GFCA", fullName: "GFCA – GERÊNCIA DE FARMACOTÉCNICA, FARMÁCIA CLÍNICA E AGENCIA TRANSFUSIONAL AGT", count: 29, percentStr: "1,1%", isTop5: false },
+  { rank: "22", name: "GGCL", fullName: "GGCL – GERÊNCIA DE GOVERNANÇA CLÍNICA", count: 28, percentStr: "1,1%", isTop5: false },
+  { rank: "23", name: "GSAC", fullName: "GSAC – GERÊNCIA DE SERVIÇO DE ATENDIMENTO A CLIENTE", count: 28, percentStr: "1,1%", isTop5: false },
+  { rank: "24", name: "GJSC", fullName: "GJSC – GERÊNCIA JURÍDICA E DE GESTÃO DE DOCUMENTOS", count: 27, percentStr: "1,1%", isTop5: false },
+  { rank: "25", name: "GCRA", fullName: "GCRA – GERÊNCIA CENTRO DE REFERÊNCIA DO AUTISMO", count: 21, percentStr: "0,8%", isTop5: false },
+  { rank: "26", name: "GEMA", fullName: "GEMA – GERÊNCIA DE ENGENHARIA, MANUTENÇÃO E OBRAS", count: 21, percentStr: "0,8%", isTop5: false },
+  { rank: "27", name: "GAFA", fullName: "GAFA – GERENCIA ASSISTÊNCIA FAMILIAR SANTA CASA BH", count: 19, percentStr: "0,7%", isTop5: false },
+  { rank: "28", name: "GSGP", fullName: "GSGP – GERÊNCIA DE SEGURANÇA E GESTÃO PATRIMONIAL", count: 19, percentStr: "0,7%", isTop5: false },
+  { rank: "29", name: "GRFA", fullName: "GRFA – GERÊNCIA DE REGULAÇÃO DE ACESSO E FLUXO ASSISTENCIAL", count: 17, percentStr: "0,7%", isTop5: false },
+  { rank: "30", name: "GAIC", fullName: "GAIC – GERÊNCIA DE AUDITORIA INTERNA E COMPLIANCE", count: 16, percentStr: "0,6%", isTop5: false },
+  { rank: "31", name: "GEOP", fullName: "GEOP – GERÊNCIA OPERACIONAL - HSL", count: 15, percentStr: "0,6%", isTop5: false },
+  { rank: "32", name: "GPCL", fullName: "GPCL – GERÊNCIA DE PESQUISA CLÍNICA SANTA CASA BH", count: 14, percentStr: "0,5%", isTop5: false },
+  { rank: "33", name: "AFGI", fullName: "AFGI – GERÊNCIA DE TECNOLOGIA DA INFORMAÇÃO", count: 8, percentStr: "0,3%", isTop5: false },
+  { rank: "34", name: "AFFC", fullName: "AFFC – GERÊNCIA DE FATURAMENTO SUS", count: 6, percentStr: "0,2%", isTop5: false },
+  { rank: "35", name: "GEND", fullName: "GEND – GERÊNCIA DE NUTRIÇÃO E DIETÉTICA", count: 6, percentStr: "0,2%", isTop5: false },
+  { rank: "36", name: "IGSC", fullName: "IGSC – INSTITUTO GERIÁTRICO SANTA CASA BH", count: 4, percentStr: "0,2%", isTop5: false },
+  { rank: "37", name: "AFFI", fullName: "AFFI – GERÊNCIA FINANCEIRA", count: 2, percentStr: "0,1%", isTop5: false },
+  { rank: "38", name: "GCMK", fullName: "GCMK – GERÊNCIA DE COMUNICAÇÃO E MARKETING", count: 1, percentStr: "0,04%", isTop5: false },
+  { rank: "39", name: "GCNE", fullName: "GCNE – GERÊNCIA DE GESTÃO DE CONTRATOS E NEGOCIAÇÕES ESTRATÉGICAS", count: 1, percentStr: "0,04%", isTop5: false },
+  { rank: "40", name: "GECL", fullName: "GECL – GERÊNCIA DE ENGENHARIA CLÍNICA", count: 1, percentStr: "0,04%", isTop5: false },
 ];
 
 const REFERRAL_TOP_CARGOS_DATA = [
@@ -359,419 +385,274 @@ const BenchmarkBadge = ({ value, label, isHigher, statusIndicator }: any) => (
   </div>
 );
 
-// SLIDE 6 INTERACTIVE VIEW
+// SLIDE 6 TRIPLE MATRIX COMPARATIVE VIEW (ESTÁTICA LADO A LADO)
 const Slide6InteractiveView = () => {
-  const [selectedPub, setSelectedPub] = useState<'TODAS' | 'EXTERNA' | 'INTERNA' | 'NÃO LISTADA'>('TODAS');
-
-  const PUBLICATION_INTERACTIVE_DATA = {
-    TODAS: {
-      label: 'TODAS AS VAGAS',
-      vacancies: 566,
-      referrals: 2546,
-      badge: '100% do Total de Vagas',
-      badgeColor: 'bg-slate-900 text-white',
-      insight: 'No panorama geral (566 vagas), 94,2% das vagas de substituição permanente pertencem ao fluxo externo. Apenas 5,1% de todas as vagas da instituição foram para aumento de quadro.',
+  const MATRIX_CATEGORIES = [
+    {
+      id: 'EXTERNA',
+      title: 'VAGAS EXTERNAS (492)',
+      subtitle: 'Divulgação Aberta ao Mercado',
+      badge: '94,4% das indicações',
+      icon: Globe,
+      theme: {
+        bg: 'bg-blue-50/50',
+        border: 'border-blue-200',
+        headerText: 'text-blue-900',
+        headerBg: 'bg-blue-600',
+        badgeBg: 'bg-blue-600 text-white',
+        accentText: 'text-blue-700',
+        barColor: '#2563eb'
+      },
+      metrics: {
+        vacancies: 492,
+        vacanciesShare: '86,9% das vagas',
+        referrals: 2404,
+        referralsShare: '94,4% das ind.',
+        ratio: '4,9 ind./vaga'
+      },
+      details: {
+        indexacao: 'Canais Externos & Portal de Vagas',
+        acesso: 'Aberto ao Mercado Publicamente',
+        publico: 'Candidatos Externos & Geral',
+        casoUso: 'Atração ampla para substituições e demandas gerais'
+      },
       solicitations: [
-        {
-          type: 'Substituição – Permanente',
-          vacancies: 430,
-          vacanciesPct: '76,0%',
-          referrals: 1916,
-          referralsPct: '75,3%',
-          color: '#ff0032',
-        },
-        {
-          type: 'Substituição – Temporária',
-          vacancies: 103,
-          vacanciesPct: '18,2%',
-          referrals: 507,
-          referralsPct: '19,9%',
-          color: '#f59e0b',
-        },
-        {
-          type: 'Aumento de quadro',
-          vacancies: 29,
-          vacanciesPct: '5,1%',
-          referrals: 103,
-          referralsPct: '4,0%',
-          color: '#10b981',
-        },
-        {
-          type: 'Substituição – Com Transformação de Vaga',
-          vacancies: 4,
-          vacanciesPct: '0,7%',
-          referrals: 20,
-          referralsPct: '0,8%',
-          color: '#8b5cf6',
-        },
+        { type: 'Substituição – Permanente', vacancies: 377, vacPct: '76,6%', referrals: 1810, refPct: '75,3%', color: '#ff0032' },
+        { type: 'Substituição – Temporária', vacancies: 92, vacPct: '18,7%', referrals: 473, refPct: '19,7%', color: '#f59e0b' },
+        { type: 'Aumento de quadro', vacancies: 20, vacPct: '4,1%', referrals: 101, refPct: '4,2%', color: '#10b981' },
+        { type: 'Substituição – Com Transformação', vacancies: 3, vacPct: '0,6%', referrals: 20, refPct: '0,8%', color: '#8b5cf6' },
       ],
+      insight: '76,6% (377 vagas) são substituição permanente e 18,7% (92) temporária. Apenas 4,1% (20 vagas) para aumento de quadro.'
     },
-    EXTERNA: {
-      label: 'VAGAS EXTERNAS',
-      vacancies: 492,
-      referrals: 2404,
-      badge: '94,4% de todas as indicações',
-      badgeColor: 'bg-blue-600 text-white',
-      insight: 'Das 492 vagas externas, 76,6% (377 vagas) são para substituição permanente e 18,7% (92 vagas) para substituição temporária. Apenas 4,1% (20 vagas) são de aumento de quadro.',
+    {
+      id: 'INTERNA',
+      title: 'VAGAS INTERNAS (32)',
+      subtitle: 'Recrutamento Interno & Mobilidade',
+      badge: '2,8% das indicações',
+      icon: Users,
+      theme: {
+        bg: 'bg-orange-50/50',
+        border: 'border-orange-200',
+        headerText: 'text-orange-900',
+        headerBg: 'bg-orange-600',
+        badgeBg: 'bg-orange-600 text-white',
+        accentText: 'text-orange-700',
+        barColor: '#ea580c'
+      },
+      metrics: {
+        vacancies: 32,
+        vacanciesShare: '5,7% das vagas',
+        referrals: 72,
+        referralsShare: '2,8% das ind.',
+        ratio: '2,3 ind./vaga'
+      },
+      details: {
+        indexacao: 'Mural Interno & Intranet SCBH',
+        acesso: 'Restrito a Colaboradores Internos',
+        publico: 'Funcionários da Instituição',
+        casoUso: 'Mobilidade funcional, carreira e indicações internas'
+      },
       solicitations: [
-        {
-          type: 'Substituição – Permanente',
-          vacancies: 377,
-          vacanciesPct: '76,6%',
-          referrals: 1810,
-          referralsPct: '75,3%',
-          color: '#ff0032',
-        },
-        {
-          type: 'Substituição – Temporária',
-          vacancies: 92,
-          vacanciesPct: '18,7%',
-          referrals: 473,
-          referralsPct: '19,7%',
-          color: '#f59e0b',
-        },
-        {
-          type: 'Aumento de quadro',
-          vacancies: 20,
-          vacanciesPct: '4,1%',
-          referrals: 101,
-          referralsPct: '4,2%',
-          color: '#10b981',
-        },
-        {
-          type: 'Substituição – Com Transformação de Vaga',
-          vacancies: 3,
-          vacanciesPct: '0,6%',
-          referrals: 20,
-          referralsPct: '0,8%',
-          color: '#8b5cf6',
-        },
+        { type: 'Substituição – Permanente', vacancies: 20, vacPct: '62,5%', referrals: 52, refPct: '72,2%', color: '#ff0032' },
+        { type: 'Substituição – Temporária', vacancies: 6, vacPct: '18,8%', referrals: 16, refPct: '22,2%', color: '#f59e0b' },
+        { type: 'Aumento de quadro', vacancies: 5, vacPct: '15,6%', referrals: 3, refPct: '4,2%', color: '#10b981' },
+        { type: 'Substituição – Com Transformação', vacancies: 1, vacPct: '3,1%', referrals: 1, refPct: '1,4%', color: '#8b5cf6' },
       ],
+      insight: '62,5% (20 vagas) são substituição permanente. Destaca-se maior participação de aumento de quadro (15,6%, 5 vagas).'
     },
-    INTERNA: {
-      label: 'VAGAS INTERNAS',
-      vacancies: 32,
-      referrals: 72,
-      badge: '2,8% de todas as indicações',
-      badgeColor: 'bg-orange-600 text-white',
-      insight: 'Das 32 vagas internas, 62,5% (20 vagas) são para substituição permanente e 18,8% (6 vagas) temporária. Destaca-se a participação de aumento de quadro com 15,6% (5 vagas).',
+    {
+      id: 'NAO_LISTADA',
+      title: 'NÃO LISTADAS (42)',
+      subtitle: 'Alocação Direta e Estratégica',
+      badge: '2,7% das indicações',
+      icon: Layers,
+      theme: {
+        bg: 'bg-slate-100/60',
+        border: 'border-slate-300',
+        headerText: 'text-slate-900',
+        headerBg: 'bg-slate-800',
+        badgeBg: 'bg-slate-800 text-white',
+        accentText: 'text-slate-800',
+        barColor: '#334155'
+      },
+      metrics: {
+        vacancies: 42,
+        vacanciesShare: '7,4% das vagas',
+        referrals: 70,
+        referralsShare: '2,7% das ind.',
+        ratio: '1,7 ind./vaga'
+      },
+      details: {
+        indexacao: 'Fluxo Direto de Alocação Específica',
+        acesso: 'Reservado / Sem Divulgação Aberta',
+        publico: 'Indicações de Perfis Específicos',
+        casoUso: 'Alocação direta rápida e contratações pontuais'
+      },
       solicitations: [
-        {
-          type: 'Substituição – Permanente',
-          vacancies: 20,
-          vacanciesPct: '62,5%',
-          referrals: 52,
-          referralsPct: '72,2%',
-          color: '#ff0032',
-        },
-        {
-          type: 'Substituição – Temporária',
-          vacancies: 6,
-          vacanciesPct: '18,8%',
-          referrals: 16,
-          referralsPct: '22,2%',
-          color: '#f59e0b',
-        },
-        {
-          type: 'Aumento de quadro',
-          vacancies: 5,
-          vacanciesPct: '15,6%',
-          referrals: 3,
-          referralsPct: '4,2%',
-          color: '#10b981',
-        },
-        {
-          type: 'Substituição – Com Transformação de Vaga',
-          vacancies: 1,
-          vacanciesPct: '3,1%',
-          referrals: 1,
-          referralsPct: '1,4%',
-          color: '#8b5cf6',
-        },
+        { type: 'Substituição – Permanente', vacancies: 33, vacPct: '78,6%', referrals: 54, refPct: '77,1%', color: '#ff0032' },
+        { type: 'Substituição – Temporária', vacancies: 5, vacPct: '11,9%', referrals: 14, refPct: '20,0%', color: '#f59e0b' },
+        { type: 'Aumento de quadro', vacancies: 4, vacPct: '9,5%', referrals: 2, refPct: '2,9%', color: '#10b981' },
+        { type: 'Substituição – Com Transformação', vacancies: 0, vacPct: '0,0%', referrals: 0, refPct: '0,0%', color: '#8b5cf6' },
       ],
-    },
-    'NÃO LISTADA': {
-      label: 'VAGAS NÃO LISTADAS',
-      vacancies: 42,
-      referrals: 70,
-      badge: '2,7% de todas as indicações',
-      badgeColor: 'bg-slate-700 text-white',
-      insight: 'Das 42 vagas não listadas (alocação direta e estratégica), 78,6% (33 vagas) correspondem a substituição permanente, 11,9% (5 vagas) temporária e 9,5% (4 vagas) aumento de quadro.',
-      solicitations: [
-        {
-          type: 'Substituição – Permanente',
-          vacancies: 33,
-          vacanciesPct: '78,6%',
-          referrals: 54,
-          referralsPct: '77,1%',
-          color: '#ff0032',
-        },
-        {
-          type: 'Substituição – Temporária',
-          vacancies: 5,
-          vacanciesPct: '11,9%',
-          referrals: 14,
-          referralsPct: '20,0%',
-          color: '#f59e0b',
-        },
-        {
-          type: 'Aumento de quadro',
-          vacancies: 4,
-          vacanciesPct: '9,5%',
-          referrals: 2,
-          referralsPct: '2,9%',
-          color: '#10b981',
-        },
-        {
-          type: 'Substituição – Com Transformação de Vaga',
-          vacancies: 0,
-          vacanciesPct: '0,0%',
-          referrals: 0,
-          referralsPct: '0,0%',
-          color: '#8b5cf6',
-        },
-      ],
-    },
-  };
-
-  const activeData = PUBLICATION_INTERACTIVE_DATA[selectedPub];
+      insight: '78,6% (33 vagas) substituição permanente, 11,9% (5) temporária e 9,5% (4) aumento de quadro.'
+    }
+  ];
 
   return (
     <SlideWrapper 
       title="PANORAMA DAS INDICAÇÕES" 
-      subtitle="DETALHAMENTO POR TIPO DE VAGA"
+      subtitle="MATRIZ TRIPLA COMPARATIVA POR TIPO DE PUBLICAÇÃO (EXTERNA, INTERNA E NÃO LISTADA)"
     >
-      <div className="flex flex-col h-full justify-between gap-2.5">
+      <div className="flex flex-col h-full justify-between gap-2">
         
-        {/* PARTE 1 — VISÃO GERAL: 3 Grandes Indicadores Fixo */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-xs flex items-center justify-between">
+        {/* TOP SUMMARY BAR */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+          <div className="bg-white p-2.5 rounded-2xl border border-gray-100 shadow-xs flex items-center justify-between">
             <div>
               <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest block mb-0.5">
                 Vagas Analisadas
               </span>
-              <div className="text-2xl font-black text-dark font-mono leading-none">566</div>
+              <div className="text-xl font-black text-dark font-mono leading-none">566</div>
             </div>
-            <div className="p-2 bg-gray-50 text-gray-600 rounded-xl font-bold shrink-0">
-              <Briefcase size={18} />
+            <div className="p-1.5 bg-gray-50 text-gray-600 rounded-xl font-bold shrink-0">
+              <Briefcase size={16} />
             </div>
           </div>
 
-          <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-xs flex items-center justify-between">
+          <div className="bg-white p-2.5 rounded-2xl border border-gray-100 shadow-xs flex items-center justify-between">
             <div>
               <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest block mb-0.5">
                 Indicações Recebidas
               </span>
-              <div className="text-2xl font-black text-dark font-mono leading-none">2.546</div>
+              <div className="text-xl font-black text-dark font-mono leading-none">2.547</div>
             </div>
-            <div className="p-2 bg-red-50 text-[#ff0032] rounded-xl font-bold shrink-0">
-              <Share2 size={18} />
+            <div className="p-1.5 bg-red-50 text-[#ff0032] rounded-xl font-bold shrink-0">
+              <Share2 size={16} />
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-red-50 to-rose-50/60 p-3 rounded-2xl border border-red-100 shadow-xs flex items-center justify-between">
+          <div className="bg-gradient-to-r from-red-50 to-rose-50/60 p-2.5 rounded-2xl border border-red-100 shadow-xs flex items-center justify-between">
             <div>
               <div className="flex items-center gap-1 mb-0.5">
                 <span className="text-[9px] font-black text-[#ff0032] uppercase tracking-widest">
-                  Intensidade do Canal
+                  MÉDIA DE INDICAÇÕES POR VAGA
                 </span>
               </div>
               <div className="flex items-baseline gap-1.5">
-                <span className="text-2xl font-black text-[#ff0032] font-mono leading-none">4,5</span>
-                <span className="text-[10.5px] font-bold text-gray-700">indicações por vaga</span>
+                <span className="text-xl font-black text-[#ff0032] font-mono leading-none">4,5</span>
               </div>
             </div>
-            <div className="p-2 bg-white/80 text-[#ff0032] rounded-xl font-bold shadow-xs shrink-0">
-              <TrendingUp size={18} />
+            <div className="p-1.5 bg-white/80 text-[#ff0032] rounded-xl font-bold shadow-xs shrink-0">
+              <TrendingUp size={16} />
             </div>
           </div>
         </div>
 
-        {/* PARTE 2 — SELEÇÃO PRINCIPAL: TIPO DE PUBLICAÇÃO */}
-        <div className="bg-white p-2.5 rounded-2xl border border-gray-200/90 shadow-xs flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-1.5 pl-2">
-            <Filter size={14} className="text-[#ff0032]" />
-            <span className="text-[10.5px] font-black uppercase text-gray-700 tracking-wider">
-              1. Selecione o Tipo de Publicação:
-            </span>
-          </div>
-
-          <div className="flex items-center gap-1.5 flex-1 justify-end flex-wrap">
-            {/* Botão Reset TODAS */}
-            <button
-              onClick={() => setSelectedPub('TODAS')}
-              className={cn(
-                "px-3 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 cursor-pointer border",
-                selectedPub === 'TODAS'
-                  ? "bg-slate-900 text-white border-slate-900 shadow-sm scale-102 ring-2 ring-slate-900/20"
-                  : "bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100"
-              )}
-            >
-              <RotateCcw size={12} className={selectedPub === 'TODAS' ? 'text-white' : 'text-gray-400'} />
-              <span>TODAS (566)</span>
-            </button>
-
-            {/* EXTERNA */}
-            <button
-              onClick={() => setSelectedPub('EXTERNA')}
-              className={cn(
-                "px-3.5 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 cursor-pointer border",
-                selectedPub === 'EXTERNA'
-                  ? "bg-blue-600 text-white border-blue-600 shadow-md scale-102 ring-2 ring-blue-600/30"
-                  : "bg-blue-50/70 text-blue-800 border-blue-200 hover:bg-blue-100"
-              )}
-            >
-              <Globe size={13} />
-              <span>EXTERNA</span>
-              <span className={cn("text-[9.5px] px-1.5 py-0.2 rounded font-mono font-bold", selectedPub === 'EXTERNA' ? "bg-white/20 text-white" : "bg-blue-100 text-blue-900")}>
-                492 vagas (94,4%)
-              </span>
-            </button>
-
-            {/* INTERNA */}
-            <button
-              onClick={() => setSelectedPub('INTERNA')}
-              className={cn(
-                "px-3.5 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 cursor-pointer border",
-                selectedPub === 'INTERNA'
-                  ? "bg-orange-600 text-white border-orange-600 shadow-md scale-102 ring-2 ring-orange-600/30"
-                  : "bg-orange-50/70 text-orange-800 border-orange-200 hover:bg-orange-100"
-              )}
-            >
-              <Users size={13} />
-              <span>INTERNA</span>
-              <span className={cn("text-[9.5px] px-1.5 py-0.2 rounded font-mono font-bold", selectedPub === 'INTERNA' ? "bg-white/20 text-white" : "bg-orange-100 text-orange-900")}>
-                32 vagas (2,8%)
-              </span>
-            </button>
-
-            {/* NÃO LISTADA */}
-            <button
-              onClick={() => setSelectedPub('NÃO LISTADA')}
-              className={cn(
-                "px-3.5 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 cursor-pointer border",
-                selectedPub === 'NÃO LISTADA'
-                  ? "bg-slate-800 text-white border-slate-800 shadow-md scale-102 ring-2 ring-slate-800/30"
-                  : "bg-slate-100 text-slate-800 border-slate-200 hover:bg-slate-200"
-              )}
-            >
-              <Layers size={13} />
-              <span>NÃO LISTADA</span>
-              <span className={cn("text-[9.5px] px-1.5 py-0.2 rounded font-mono font-bold", selectedPub === 'NÃO LISTADA' ? "bg-white/20 text-white" : "bg-slate-200 text-slate-900")}>
-                42 vagas (2,7%)
-              </span>
-            </button>
-          </div>
-        </div>
-
-        {/* PARTE 3 — GRÁFICO / DISTRIBUIÇÃO POR TIPO DE SOLICITAÇÃO (SEM TERCEIRA DIMENSÃO) */}
-        <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-xs flex flex-col justify-between flex-1">
-          <div>
-            {/* Header com os Totais do Filtro Selecionado */}
-            <div className="flex justify-between items-center mb-3 pb-2.5 border-b border-gray-100 flex-wrap gap-2">
-              <div className="flex items-center gap-2">
-                <div className="p-2 bg-red-50 text-[#ff0032] rounded-xl font-bold">
-                  <FileText size={18} />
-                </div>
+        {/* THREE COMPARATIVE COLUMNS (MATRIZ TRIPLA LADO A LADO) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 flex-1">
+          {MATRIX_CATEGORIES.map((cat) => {
+            const IconComp = cat.icon;
+            return (
+              <div 
+                key={cat.id} 
+                className={cn(
+                  "bg-white rounded-2xl border p-3 shadow-xs flex flex-col justify-between transition-all",
+                  cat.theme.border
+                )}
+              >
                 <div>
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-sm font-black text-dark uppercase tracking-tight">
-                      {activeData.label} — {activeData.vacancies} VAGAS
-                    </h3>
-                    <span className={cn("text-[9px] font-black px-2 py-0.5 rounded-md uppercase font-mono", activeData.badgeColor)}>
-                      {activeData.badge}
+                  {/* Category Header */}
+                  <div className="flex justify-between items-start mb-2 pb-1.5 border-b border-gray-100">
+                    <div className="flex items-center gap-2">
+                      <div className={cn("p-1.5 rounded-xl font-bold text-white", cat.theme.headerBg)}>
+                        <IconComp size={16} />
+                      </div>
+                      <div>
+                        <h4 className={cn("text-xs font-black uppercase tracking-tight", cat.theme.headerText)}>
+                          {cat.title}
+                        </h4>
+                        <p className="text-[8.5px] font-bold text-gray-400">
+                          {cat.subtitle}
+                        </p>
+                      </div>
+                    </div>
+                    <span className={cn("text-[8px] font-black px-1.5 py-0.5 rounded uppercase font-mono shrink-0 ml-1", cat.theme.badgeBg)}>
+                      {cat.badge}
                     </span>
                   </div>
-                  <p className="text-[10px] font-bold text-gray-400">
-                    Distribuição dessas {activeData.vacancies} vagas por Motivo / Tipo de Solicitação ({activeData.referrals.toLocaleString('pt-BR')} indicações associadas)
+
+                  {/* Indexing, Access, Target & Use Cases */}
+                  <div className={cn("p-1.5 rounded-xl border mb-2 text-[8px] space-y-0.5", cat.theme.bg, cat.theme.border)}>
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-500 uppercase">Acesso:</span>
+                      <span className="font-black text-gray-800 font-mono">{cat.details.acesso}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-500 uppercase">Indexação:</span>
+                      <span className="font-bold text-gray-700 truncate max-w-[160px]">{cat.details.indexacao}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-500 uppercase">Público-Alvo:</span>
+                      <span className="font-bold text-gray-700">{cat.details.publico}</span>
+                    </div>
+                  </div>
+
+                  {/* Key Metrics Grid */}
+                  <div className="grid grid-cols-3 gap-1 mb-2">
+                    <div className="bg-gray-50 p-1.5 rounded-xl border border-gray-100 text-center">
+                      <span className="text-[7.5px] font-black text-gray-400 uppercase block">Vagas</span>
+                      <div className="text-xs font-black text-dark font-mono">{cat.metrics.vacancies}</div>
+                      <span className="text-[7px] font-bold text-gray-500">{cat.metrics.vacanciesShare}</span>
+                    </div>
+                    <div className="bg-gray-50 p-1.5 rounded-xl border border-gray-100 text-center">
+                      <span className="text-[7.5px] font-black text-gray-400 uppercase block">Indicações</span>
+                      <div className="text-xs font-black text-[#ff0032] font-mono">{cat.metrics.referrals}</div>
+                      <span className="text-[7px] font-bold text-gray-500">{cat.metrics.referralsShare}</span>
+                    </div>
+                    <div className="bg-gray-50 p-1.5 rounded-xl border border-gray-100 text-center">
+                      <span className="text-[7.5px] font-black text-gray-400 uppercase block">Média</span>
+                      <div className="text-xs font-black text-gray-800 font-mono">{cat.metrics.ratio}</div>
+                      <span className="text-[7px] font-bold text-gray-500">por vaga</span>
+                    </div>
+                  </div>
+
+                  {/* Solicitation Type Breakdown */}
+                  <div className="space-y-1 mb-2">
+                    <span className="text-[8px] font-black uppercase tracking-wider text-gray-400 block mb-0.5">
+                      Por Tipo de Solicitação:
+                    </span>
+                    {cat.solicitations.map((sol, idx) => (
+                      <div key={idx} className="p-1 rounded-lg bg-gray-50/80 border border-gray-100 flex items-center justify-between text-[8px]">
+                        <div className="flex items-center gap-1 min-w-0 flex-1">
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: sol.color }} />
+                          <span className="font-bold text-gray-700 truncate" title={sol.type}>
+                            {sol.type}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1 font-mono shrink-0">
+                          <span className="font-black text-dark">{sol.vacancies} v.</span>
+                          <span className="text-gray-400">({sol.vacPct})</span>
+                          <span className="font-bold text-[#ff0032] bg-red-50 px-1 py-0.2 rounded border border-red-100 ml-0.5">
+                            {sol.referrals} ind.
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Insight Footer */}
+                <div className="pt-1.5 border-t border-gray-100">
+                  <p className="text-[8px] font-bold text-gray-500 leading-tight">
+                    <strong className={cat.theme.accentText}>Insight: </strong>
+                    {cat.insight}
                   </p>
                 </div>
               </div>
-
-              <div className="flex items-center gap-2 font-mono">
-                <span className="text-xs font-bold text-gray-600 bg-gray-100 px-2.5 py-1 rounded-lg">
-                  Total do Filtro: <strong>{activeData.vacancies} vagas</strong>
-                </span>
-                <span className="text-xs font-bold text-[#ff0032] bg-red-50 px-2.5 py-1 rounded-lg border border-red-100">
-                  <strong>{activeData.referrals.toLocaleString('pt-BR')} indicações</strong>
-                </span>
-              </div>
-            </div>
-
-            {/* Grid dos 4 Tipos de Solicitação com layout amplo e legível */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-1">
-              {activeData.solicitations.map((item, idx) => {
-                const maxVacanciesInGroup = Math.max(...activeData.solicitations.map(s => s.vacancies), 1);
-                const barWidthPct = (item.vacancies / maxVacanciesInGroup) * 100;
-
-                return (
-                  <motion.div
-                    key={item.type + selectedPub}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.2, delay: idx * 0.04 }}
-                    className="p-3 rounded-2xl bg-gray-50/80 border border-gray-200/80 hover:bg-white hover:shadow-xs transition-all flex flex-col justify-between gap-2"
-                  >
-                    <div>
-                      {/* Categoria e Tag */}
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <span className="w-3 h-3 rounded-full shrink-0 shadow-xs" style={{ backgroundColor: item.color }} />
-                          <h4 className="font-black text-xs text-dark truncate">
-                            {item.type}
-                          </h4>
-                        </div>
-                        <span 
-                          className="text-[10px] font-black font-mono px-2 py-0.5 rounded-md text-white shrink-0"
-                          style={{ backgroundColor: item.color }}
-                        >
-                          {item.vacanciesPct} das vagas
-                        </span>
-                      </div>
-
-                      {/* Métricas Principais: VAGAS & INDICAÇÕES */}
-                      <div className="grid grid-cols-2 gap-2 mb-2">
-                        <div className="bg-white p-2 rounded-xl border border-gray-200/70">
-                          <span className="text-[8.5px] font-black text-gray-400 uppercase tracking-wider block">
-                            Quantidade de Vagas
-                          </span>
-                          <div className="flex items-baseline gap-1">
-                            <span className="text-lg font-black text-dark font-mono">{item.vacancies}</span>
-                            <span className="text-[10px] font-bold text-gray-500 font-mono">vagas</span>
-                          </div>
-                        </div>
-
-                        <div className="bg-white p-2 rounded-xl border border-gray-200/70">
-                          <span className="text-[8.5px] font-black text-gray-400 uppercase tracking-wider block">
-                            Indicações Geradas
-                          </span>
-                          <div className="flex items-baseline gap-1">
-                            <span className="text-lg font-black text-[#ff0032] font-mono">{item.referrals.toLocaleString('pt-BR')}</span>
-                            <span className="text-[9.5px] font-bold text-gray-500 font-mono">({item.referralsPct})</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Barra de Proporção de Vagas */}
-                    <div>
-                      <div className="flex justify-between items-center text-[9px] font-bold text-gray-400 mb-1 font-mono">
-                        <span>Proporção no grupo</span>
-                        <span style={{ color: item.color }} className="font-black">{item.vacanciesPct}</span>
-                      </div>
-                      <div className="w-full h-2 bg-gray-200/80 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full rounded-full transition-all duration-500" 
-                          style={{ width: `${Math.max(barWidthPct, item.vacancies > 0 ? 3 : 0)}%`, backgroundColor: item.color }}
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
+            );
+          })}
         </div>
+
       </div>
     </SlideWrapper>
   );
@@ -1117,6 +998,7 @@ const Slides = [
             <div>
               <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest block">Candidaturas Por Vaga</span>
               <div className="text-xl font-black text-dark font-mono">1.243</div>
+              <span className="text-[9px] font-bold text-violet-600">Média por vaga</span>
             </div>
           </div>
         </div>
@@ -1156,23 +1038,23 @@ const Slides = [
           {/* Chart 2: Candidaturas por Faixa Etária */}
           <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between">
             <div>
-              <div className="flex justify-between items-center mb-2">
+              <div className="flex justify-between items-center mb-1">
                 <h4 className="text-xs font-black text-dark uppercase tracking-tight">Candidaturas por Faixa Etária</h4>
-                <span className="text-[9px] font-bold font-mono text-cyan-700 bg-cyan-50 px-2 py-0.5 rounded border border-cyan-200">Top 5 ▾</span>
+                <span className="text-[9px] font-bold font-mono text-cyan-700 bg-cyan-50 px-2 py-0.5 rounded border border-cyan-200">Gerações ▾</span>
               </div>
 
-              <div className="h-[145px] w-full">
+              <div className="h-[95px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={CANDIDACY_AGE_DATA} margin={{ top: 16, right: 10, left: -20, bottom: 0 }}>
+                  <BarChart data={CANDIDACY_AGE_DATA} margin={{ top: 14, right: 10, left: -20, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                    <XAxis dataKey="range" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 8, fontWeight: 'bold' }} />
-                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#b4b4b4', fontSize: 8 }} />
+                    <XAxis dataKey="range" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 7.5, fontWeight: 'bold' }} />
+                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#b4b4b4', fontSize: 7.5 }} />
                     <Tooltip 
-                      formatter={(val: any) => [`${Number(val).toLocaleString('pt-BR')} candidaturas`, 'Candidaturas recebidas']}
+                      formatter={(val: any, _name: any, item: any) => [`${Number(val).toLocaleString('pt-BR')} candidaturas (${item.payload.generation})`, 'Candidaturas recebidas']}
                       contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} 
                     />
-                    <Bar dataKey="candidaturas" name="Candidaturas recebidas" fill="#38bdf8" radius={[6, 6, 0, 0]} barSize={18}>
-                      <LabelList dataKey="formatted" position="top" fill="#0284c7" fontSize={8} fontWeight="bold" />
+                    <Bar dataKey="candidaturas" name="Candidaturas recebidas" fill="#38bdf8" radius={[6, 6, 0, 0]} barSize={16}>
+                      <LabelList dataKey="formatted" position="top" fill="#0284c7" fontSize={7.5} fontWeight="bold" />
                       {CANDIDACY_AGE_DATA.map((_, index) => (
                         <Cell key={`cell-${index}`} fill={index < 2 ? '#0284c7' : '#38bdf8'} />
                       ))}
@@ -1180,10 +1062,23 @@ const Slides = [
                   </BarChart>
                 </ResponsiveContainer>
               </div>
+
+              {/* Tabela de Gerações por Faixa Etária */}
+              <div className="mt-1 space-y-0.5 text-[8.5px] border-t border-gray-100 pt-1">
+                {CANDIDACY_AGE_DATA.filter(d => d.generation !== 'Outros').map((item, idx) => (
+                  <div key={idx} className="flex justify-between items-center px-1.5 py-0.5 bg-gray-50/90 rounded border border-gray-100">
+                    <span className="font-bold text-gray-700 font-sans text-[8.5px]">{item.range}</span>
+                    <span className="text-[7.5px] font-black uppercase text-[#0284c7] bg-cyan-50 px-1.5 py-0.2 rounded border border-cyan-100 font-mono">
+                      {item.generation}
+                    </span>
+                    <span className="font-mono font-bold text-gray-500 text-[8.5px]">{item.formatted}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="pt-2 border-t border-gray-100 text-[10px] font-bold text-gray-500 flex justify-between mt-2">
-              <span>25–40 anos (53,6%)</span>
+            <div className="pt-1.5 border-t border-gray-100 text-[9.5px] font-bold text-gray-500 flex justify-between mt-1">
+              <span>Gen Z (36,5k) • Mill. (20,3k) • Gen X (18,4k)</span>
               <span className="text-cyan-700 font-black">75.593 Total</span>
             </div>
           </div>
@@ -1425,10 +1320,10 @@ const Slides = [
               <div className="flex justify-between items-start mb-2 pb-1.5 border-b border-gray-100">
                 <div>
                   <h4 className="text-xs font-black text-dark uppercase tracking-tight">Ranking das Gerências Indicantes</h4>
-                  <p className="text-[9.5px] font-bold text-gray-400">Base com correspondência (940 ind.)</p>
+                  <p className="text-[9.5px] font-bold text-gray-400">40 gerências mapeadas (2.547 ind.)</p>
                 </div>
                 <span className="text-[8.5px] font-bold font-mono text-[#ff0032] bg-red-50 px-1.5 py-0.5 rounded border border-red-100 shrink-0 ml-1">
-                  Top 5 = 41,8%
+                  Top 5 = 46,4%
                 </span>
               </div>
 
@@ -1451,27 +1346,27 @@ const Slides = [
                       )}>
                         {item.rank}
                       </span>
-                      <span className="text-[10.5px] font-bold text-dark truncate" title={item.fullName}>
+                      <span className="text-[10px] font-bold text-dark truncate" title={item.fullName}>
                         {item.fullName}
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-1.5 w-28 shrink-0">
+                    <div className="flex items-center gap-1.5 w-32 shrink-0 justify-end">
                       <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
                         <div 
                           className="h-full rounded-full"
                           style={{ 
-                            width: `${(item.count / 122) * 100}%`,
+                            width: `${(item.count / 359) * 100}%`,
                             backgroundColor: item.isTop5 ? '#ff0032' : '#64748b'
                           }}
                         />
                       </div>
-                      <div className="text-right min-w-[36px] font-mono">
-                        <span className={cn("text-[10.5px] font-black block leading-none", item.isTop5 ? "text-[#ff0032]" : "text-dark")}>
+                      <div className="text-right min-w-[42px] font-mono shrink-0">
+                        <span className={cn("text-[10px] font-black block leading-none", item.isTop5 ? "text-[#ff0032]" : "text-dark")}>
                           {item.count}
                         </span>
                         <span className="text-[7.5px] font-bold text-gray-400">
-                          {item.percent}%
+                          {item.percentStr}
                         </span>
                       </div>
                     </div>
@@ -1481,8 +1376,8 @@ const Slides = [
             </div>
 
             <div className="pt-1.5 border-t border-gray-100 text-[8.5px] font-bold text-gray-400 flex justify-between items-center mt-1">
-              <span className="truncate">SAEF (122), GTRA (93), GEPE (73)</span>
-              <span className="text-[#ff0032] font-black shrink-0">Mapeado: 940</span>
+              <span className="truncate">MSDT (359), TEEC (344), TECT (200)</span>
+              <span className="text-[#ff0032] font-black shrink-0">Total: 2.547 ind.</span>
             </div>
           </div>
 
