@@ -506,133 +506,117 @@ const Slide6InteractiveView = () => {
       <div className="flex flex-col h-full justify-between gap-2">
         
         {/* TOP SUMMARY BAR */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-          <div className="bg-white p-2.5 rounded-2xl border border-gray-100 shadow-xs flex items-center justify-between">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="bg-white p-3 md:p-3.5 rounded-2xl border border-gray-100 shadow-xs flex items-center justify-between">
             <div>
-              <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest block mb-0.5">
+              <span className="text-xs font-black text-gray-400 uppercase tracking-widest block mb-1">
                 Vagas Analisadas
               </span>
-              <div className="text-xl font-black text-dark font-mono leading-none">566</div>
+              <div className="text-2xl md:text-3xl font-black text-dark font-mono leading-none">566</div>
             </div>
-            <div className="p-1.5 bg-gray-50 text-gray-600 rounded-xl font-bold shrink-0">
-              <Briefcase size={16} />
+            <div className="p-2 bg-gray-50 text-gray-600 rounded-xl font-bold shrink-0">
+              <Briefcase size={22} />
             </div>
           </div>
 
-          <div className="bg-white p-2.5 rounded-2xl border border-gray-100 shadow-xs flex items-center justify-between">
+          <div className="bg-white p-3 md:p-3.5 rounded-2xl border border-gray-100 shadow-xs flex items-center justify-between">
             <div>
-              <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest block mb-0.5">
+              <span className="text-xs font-black text-gray-400 uppercase tracking-widest block mb-1">
                 Indicações Recebidas
               </span>
-              <div className="text-xl font-black text-dark font-mono leading-none">2.547</div>
+              <div className="text-2xl md:text-3xl font-black text-dark font-mono leading-none">2.547</div>
             </div>
-            <div className="p-1.5 bg-red-50 text-[#ff0032] rounded-xl font-bold shrink-0">
-              <Share2 size={16} />
+            <div className="p-2 bg-red-50 text-[#ff0032] rounded-xl font-bold shrink-0">
+              <Share2 size={22} />
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-red-50 to-rose-50/60 p-2.5 rounded-2xl border border-red-100 shadow-xs flex items-center justify-between">
+          <div className="bg-gradient-to-r from-red-50 to-rose-50/60 p-3 md:p-3.5 rounded-2xl border border-red-100 shadow-xs flex items-center justify-between">
             <div>
-              <div className="flex items-center gap-1 mb-0.5">
-                <span className="text-[9px] font-black text-[#ff0032] uppercase tracking-widest">
+              <div className="flex items-center gap-1 mb-1">
+                <span className="text-xs font-black text-[#ff0032] uppercase tracking-widest">
                   MÉDIA DE INDICAÇÕES POR VAGA
                 </span>
               </div>
               <div className="flex items-baseline gap-1.5">
-                <span className="text-xl font-black text-[#ff0032] font-mono leading-none">4,5</span>
+                <span className="text-2xl md:text-3xl font-black text-[#ff0032] font-mono leading-none">4,5</span>
               </div>
             </div>
-            <div className="p-1.5 bg-white/80 text-[#ff0032] rounded-xl font-bold shadow-xs shrink-0">
-              <TrendingUp size={16} />
+            <div className="p-2 bg-white/80 text-[#ff0032] rounded-xl font-bold shadow-xs shrink-0">
+              <TrendingUp size={22} />
             </div>
           </div>
         </div>
 
         {/* THREE COMPARATIVE COLUMNS (MATRIZ TRIPLA LADO A LADO) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 flex-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 flex-1">
           {MATRIX_CATEGORIES.map((cat) => {
             const IconComp = cat.icon;
             return (
               <div 
                 key={cat.id} 
                 className={cn(
-                  "bg-white rounded-2xl border p-3 shadow-xs flex flex-col justify-between transition-all",
+                  "bg-white rounded-2xl border p-4 shadow-xs flex flex-col justify-between transition-all",
                   cat.theme.border
                 )}
               >
                 <div>
                   {/* Category Header */}
-                  <div className="flex justify-between items-start mb-2 pb-1.5 border-b border-gray-100">
-                    <div className="flex items-center gap-2">
-                      <div className={cn("p-1.5 rounded-xl font-bold text-white", cat.theme.headerBg)}>
-                        <IconComp size={16} />
+                  <div className="flex justify-between items-start mb-3 pb-2.5 border-b border-gray-100">
+                    <div className="flex items-center gap-2.5">
+                      <div className={cn("p-2.5 rounded-xl font-bold text-white shrink-0", cat.theme.headerBg)}>
+                        <IconComp size={22} />
                       </div>
                       <div>
-                        <h4 className={cn("text-xs font-black uppercase tracking-tight", cat.theme.headerText)}>
+                        <h4 className={cn("text-base md:text-lg font-black uppercase tracking-tight", cat.theme.headerText)}>
                           {cat.title}
                         </h4>
-                        <p className="text-[8.5px] font-bold text-gray-400">
+                        <p className="text-xs font-bold text-gray-500">
                           {cat.subtitle}
                         </p>
                       </div>
                     </div>
-                    <span className={cn("text-[8px] font-black px-1.5 py-0.5 rounded uppercase font-mono shrink-0 ml-1", cat.theme.badgeBg)}>
+                    <span className={cn("text-xs font-black px-2.5 py-1 rounded-lg uppercase font-mono shrink-0 ml-1 shadow-2xs", cat.theme.badgeBg)}>
                       {cat.badge}
                     </span>
                   </div>
 
-                  {/* Indexing, Access, Target & Use Cases */}
-                  <div className={cn("p-1.5 rounded-xl border mb-2 text-[8px] space-y-0.5", cat.theme.bg, cat.theme.border)}>
-                    <div className="flex justify-between items-center">
-                      <span className="font-bold text-gray-500 uppercase">Acesso:</span>
-                      <span className="font-black text-gray-800 font-mono">{cat.details.acesso}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="font-bold text-gray-500 uppercase">Indexação:</span>
-                      <span className="font-bold text-gray-700 truncate max-w-[160px]">{cat.details.indexacao}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="font-bold text-gray-500 uppercase">Público-Alvo:</span>
-                      <span className="font-bold text-gray-700">{cat.details.publico}</span>
-                    </div>
-                  </div>
-
                   {/* Key Metrics Grid */}
-                  <div className="grid grid-cols-3 gap-1 mb-2">
-                    <div className="bg-gray-50 p-1.5 rounded-xl border border-gray-100 text-center">
-                      <span className="text-[7.5px] font-black text-gray-400 uppercase block">Vagas</span>
-                      <div className="text-xs font-black text-dark font-mono">{cat.metrics.vacancies}</div>
-                      <span className="text-[7px] font-bold text-gray-500">{cat.metrics.vacanciesShare}</span>
+                  <div className="grid grid-cols-3 gap-2 mb-3">
+                    <div className="bg-gray-50 p-2.5 rounded-xl border border-gray-100 text-center">
+                      <span className="text-xs font-black text-gray-400 uppercase block">Vagas</span>
+                      <div className="text-xl md:text-2xl font-black text-dark font-mono my-1">{cat.metrics.vacancies}</div>
+                      <span className="text-xs font-bold text-gray-600">{cat.metrics.vacanciesShare}</span>
                     </div>
-                    <div className="bg-gray-50 p-1.5 rounded-xl border border-gray-100 text-center">
-                      <span className="text-[7.5px] font-black text-gray-400 uppercase block">Indicações</span>
-                      <div className="text-xs font-black text-[#ff0032] font-mono">{cat.metrics.referrals}</div>
-                      <span className="text-[7px] font-bold text-gray-500">{cat.metrics.referralsShare}</span>
+                    <div className="bg-gray-50 p-2.5 rounded-xl border border-gray-100 text-center">
+                      <span className="text-xs font-black text-gray-400 uppercase block">Indicações</span>
+                      <div className="text-xl md:text-2xl font-black text-[#ff0032] font-mono my-1">{cat.metrics.referrals}</div>
+                      <span className="text-xs font-bold text-gray-600">{cat.metrics.referralsShare}</span>
                     </div>
-                    <div className="bg-gray-50 p-1.5 rounded-xl border border-gray-100 text-center">
-                      <span className="text-[7.5px] font-black text-gray-400 uppercase block">Média</span>
-                      <div className="text-xs font-black text-gray-800 font-mono">{cat.metrics.ratio}</div>
-                      <span className="text-[7px] font-bold text-gray-500">por vaga</span>
+                    <div className="bg-gray-50 p-2.5 rounded-xl border border-gray-100 text-center">
+                      <span className="text-xs font-black text-gray-400 uppercase block">Média</span>
+                      <div className="text-xl md:text-2xl font-black text-gray-800 font-mono my-1">{cat.metrics.ratio}</div>
+                      <span className="text-xs font-bold text-gray-600">por vaga</span>
                     </div>
                   </div>
 
                   {/* Solicitation Type Breakdown */}
-                  <div className="space-y-1 mb-2">
-                    <span className="text-[8px] font-black uppercase tracking-wider text-gray-400 block mb-0.5">
+                  <div className="space-y-2 mb-3">
+                    <span className="text-xs font-black uppercase tracking-wider text-gray-500 block mb-1">
                       Por Tipo de Solicitação:
                     </span>
                     {cat.solicitations.map((sol, idx) => (
-                      <div key={idx} className="p-1 rounded-lg bg-gray-50/80 border border-gray-100 flex items-center justify-between text-[8px]">
-                        <div className="flex items-center gap-1 min-w-0 flex-1">
-                          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: sol.color }} />
-                          <span className="font-bold text-gray-700 truncate" title={sol.type}>
+                      <div key={idx} className="p-2 rounded-xl bg-gray-50/90 border border-gray-200/60 flex items-center justify-between text-xs md:text-sm">
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
+                          <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: sol.color }} />
+                          <span className="font-bold text-gray-800 truncate" title={sol.type}>
                             {sol.type}
                           </span>
                         </div>
-                        <div className="flex items-center gap-1 font-mono shrink-0">
+                        <div className="flex items-center gap-1.5 font-mono shrink-0 ml-1">
                           <span className="font-black text-dark">{sol.vacancies} v.</span>
-                          <span className="text-gray-400">({sol.vacPct})</span>
-                          <span className="font-bold text-[#ff0032] bg-red-50 px-1 py-0.2 rounded border border-red-100 ml-0.5">
+                          <span className="text-gray-500 font-semibold">({sol.vacPct})</span>
+                          <span className="font-extrabold text-[#ff0032] bg-red-50 px-2 py-0.5 rounded-md border border-red-100 ml-1">
                             {sol.referrals} ind.
                           </span>
                         </div>
@@ -642,9 +626,9 @@ const Slide6InteractiveView = () => {
                 </div>
 
                 {/* Insight Footer */}
-                <div className="pt-1.5 border-t border-gray-100">
-                  <p className="text-[8px] font-bold text-gray-500 leading-tight">
-                    <strong className={cat.theme.accentText}>Insight: </strong>
+                <div className="pt-2.5 border-t border-gray-100">
+                  <p className="text-xs md:text-sm font-semibold text-gray-700 leading-snug">
+                    <strong className={cn("font-black text-sm", cat.theme.accentText)}>Insight: </strong>
                     {cat.insight}
                   </p>
                 </div>
@@ -1816,33 +1800,43 @@ const Slides = [
     </SlideWrapper>
   ),
 
-  // SLIDE: ENCERRAMENTO
+  // SLIDE 8: ENCERRAMENTO & AGRADECIMENTO
   () => (
-    <div className="h-full bg-white flex flex-col items-center justify-center text-center p-12 relative overflow-hidden">
-       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[1px] bg-gray-100 skew-y-12" />
-       
-       <motion.div
-         initial={{ scale: 0.9, opacity: 0 }}
-         animate={{ scale: 1, opacity: 1 }}
-         transition={{ duration: 0.8 }}
-         className="relative z-10 max-w-3xl mx-auto flex flex-col items-center"
-       >
-         <div className="w-24 h-1.5 bg-[#ff0032] mb-10 rounded-full" />
-         
-         <h1 className="text-6xl md:text-8xl font-black text-dark mb-6 tracking-tighter">
-           OBRIGADO!
-         </h1>
-         
-         <p className="text-lg md:text-xl text-gray-600 font-medium mb-12 leading-relaxed max-w-2xl">
-           Por trás de cada indicador existe uma pessoa. O People Analytics nos mostra onde devemos agir primeiro.
-         </p>
-         
-         <div className="pt-8 border-t border-gray-200 w-full flex justify-center">
-           <div className="text-black text-xs md:text-sm font-black uppercase tracking-[0.4em]">
-             SANTA CASA BH • GESTÃO DE PESSOAS • 2026
-           </div>
-         </div>
-       </motion.div>
+    <div className="h-full bg-white flex flex-col items-center justify-center text-center p-8 md:p-12 relative overflow-hidden rounded-2xl shadow-sm border border-gray-100">
+      {/* Background Decorative Accents */}
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-red-50/60 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-50/60 rounded-full blur-3xl pointer-events-none" />
+      
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 max-w-4xl mx-auto flex flex-col items-center"
+      >
+        <div className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-100 shadow-2xs">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ff0032] animate-pulse" />
+          <span className="text-xs font-black text-[#ff0032] uppercase tracking-[0.25em] font-mono">
+            PEOPLE ANALYTICS • SANTA CASA BH
+          </span>
+        </div>
+
+        <h1 className="text-6xl md:text-8xl font-black text-dark mb-6 tracking-tighter uppercase leading-none">
+          OBRIGADO!
+        </h1>
+
+        <div className="w-20 h-1.5 bg-[#ff0032] mb-8 rounded-full" />
+
+        <p className="text-lg md:text-2xl text-gray-700 font-medium mb-10 leading-relaxed max-w-3xl italic">
+          "Dados não tomam decisões, pessoas tomam. O <span className="font-black text-[#ff0032] not-italic">People Analytics</span> é a bússola que transforma indicadores em empatia, estratégia e cuidado contínuo com quem cuida da nossa gente."
+        </p>
+
+        <div className="pt-8 border-t border-gray-100 w-full flex flex-col items-center justify-center gap-3">
+          <SantaCasaLogo className="h-10 w-auto text-dark" />
+          <div className="text-gray-400 text-xs md:text-sm font-black uppercase tracking-[0.35em] font-mono">
+            GESTÃO DE PESSOAS • 2026
+          </div>
+        </div>
+      </motion.div>
     </div>
   )
 ];
