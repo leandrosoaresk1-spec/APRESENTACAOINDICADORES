@@ -1073,7 +1073,7 @@ const Slides = [
   // SLIDE 4: PANORAMA DAS CANDIDATURAS (Dados do Documento)
   () => (
     <SlideWrapper 
-      title="Panorama das Candidaturas" 
+      title="PANORAMA DAS CANDIDATURAS" 
       subtitle="Perfil dos candidatos, origem das inscrições, período de candidatura e desempenho dos canais de atração (Abr–Jun/2026)."
     >
       <div className="flex flex-col h-full justify-between gap-3">
@@ -1289,7 +1289,7 @@ const Slides = [
   // SLIDE 5: PANORAMA DAS INDICAÇÕES (Top 10 Indicantes + Gerências Indicantes + Top 5 Vagas)
   () => (
     <SlideWrapper 
-      title="Panorama das Indicações" 
+      title="PANORAMA DAS INDICAÇÕES" 
       subtitle="Volume total de indicações, ranking dos 10 maiores indicantes, gerências indicantes e vagas mais procuradas."
     >
       <div className="flex flex-col h-full justify-between gap-3">
