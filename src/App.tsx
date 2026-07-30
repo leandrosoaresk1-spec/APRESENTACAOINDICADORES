@@ -201,9 +201,9 @@ const EDUCATION_DATA = [
 
 const TOP_ROLES_CANDIDACY = [
   { role: 'Técnico de Enfermagem', count: 18090 },
+  { role: 'Assistente Administrativo', count: 10608 },
   { role: 'Auxiliar Administrativo', count: 6817 },
   { role: 'Enfermeiro', count: 6153 },
-  { role: 'Assistente Administrativo', count: 10608 },
 ];
 
 const REFERRAL_GERENCIAS_DATA = [
@@ -1086,7 +1086,6 @@ const Slides = [
             <div>
               <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest block">Total Candidaturas</span>
               <div className="text-xl font-black text-dark font-mono">75.593</div>
-              <span className="text-[9px] font-bold text-gray-500">831/dia • 1.243/vaga</span>
             </div>
           </div>
 
@@ -1097,7 +1096,6 @@ const Slides = [
             <div>
               <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest block">Candidaturas Por Dia</span>
               <div className="text-xl font-black text-dark font-mono">831</div>
-              <span className="text-[9px] font-bold text-blue-600">831 candidaturas por dia</span>
             </div>
           </div>
 
@@ -1119,7 +1117,6 @@ const Slides = [
             <div>
               <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest block">Candidaturas Por Vaga</span>
               <div className="text-xl font-black text-dark font-mono">1.243</div>
-              <span className="text-[9px] font-bold text-violet-600">média de 1243 por vaga</span>
             </div>
           </div>
         </div>
@@ -1301,7 +1298,10 @@ const Slides = [
             </div>
             <div className="min-w-0">
               <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest block truncate">KPI 01 • Total Indicações</span>
-              <div className="text-lg font-black text-dark font-mono">2.547</div>
+              <div className="text-lg font-black text-dark font-mono flex items-baseline gap-1.5">
+                2.547
+                <span className="text-xs font-bold text-red-600 font-sans">(3,36% das candidaturas)</span>
+              </div>
               <span className="text-[8px] font-bold text-red-700 bg-red-50 px-1.5 py-0.5 rounded border border-red-100 inline-block mt-0.5">
                 das quais 1.045 são de pessoas distintas
               </span>
@@ -1558,7 +1558,7 @@ const Slides = [
   () => (
     <SlideWrapper 
       title="DAS INDICAÇÕES À CONTRATAÇÃO" 
-      subtitle="52 contratações originadas a partir de 2.546 indicações"
+      subtitle="52 contratações originadas a partir de 566 vagas"
     >
       <div className="flex flex-col h-full justify-between gap-3">
         {/* PARTE 1: NARRATIVA VISUAL CENTRAL (FLUXO + STATUS) */}
@@ -1567,12 +1567,12 @@ const Slides = [
           {/* FLUXO CENTRAL DE CONVERSÃO (8 cols) */}
           <div className="lg:col-span-8 bg-white p-3.5 rounded-2xl border border-gray-100 shadow-xs flex items-center justify-between">
             <div className="flex items-center gap-2 flex-1 justify-around">
-              {/* Card 1: Indicações */}
+              {/* Card 1: Vagas */}
               <div className="flex flex-col items-center text-center p-2 rounded-xl bg-gray-50 border border-gray-200/80 min-w-[120px]">
                 <span className="text-[9px] font-black uppercase text-gray-400 tracking-wider">
-                  Indicações
+                  Vagas
                 </span>
-                <span className="text-xl font-black text-dark font-mono">2.546</span>
+                <span className="text-xl font-black text-dark font-mono">566</span>
                 <span className="text-[8.5px] font-bold text-gray-500">Base Analisada</span>
               </div>
 
@@ -1600,7 +1600,7 @@ const Slides = [
                 <span className="text-[9px] font-black uppercase text-[#ff0032] tracking-wider">
                   Taxa de Conversão
                 </span>
-                <span className="text-xl font-black text-[#ff0032] font-mono">2,04%</span>
+                <span className="text-xl font-black text-[#ff0032] font-mono">9,18%</span>
                 <span className="text-[8.5px] font-bold text-red-600">Eficiência Geral</span>
               </div>
             </div>
